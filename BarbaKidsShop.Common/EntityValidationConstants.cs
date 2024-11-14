@@ -8,5 +8,55 @@ namespace BarbaKidsShop.Common
 {
     public static class EntityValidationConstants
     {
+        public static class CustomerConstants
+        {
+            public const int UsernameMinLength = 1;
+            public const int UsernameMaxLength = 255;
+
+            public const int FullNameMinLength = 1;
+            public const int FullNameMaxLength = 100;
+
+            public const int PhoneNumberMinLength = 4;
+            public const int PhoneNumberMaxLength = 17;
+
+            public const int AddressMinLength = 1;
+            public const int AddressMaxLength = 255;
+
+            public const int PasswordMinLength = 3;
+            public const int PasswordMaxLength = 255;
+
+            public const int EmailMinLength = 1;
+            public const int EmailMaxLength = 100;
+        }
+
+        public static class ProductConstants
+        {
+            public const int ProductNameMinLength = 2;
+            public const int ProductNameMaxLength = 60;
+
+            public const int DescriptionMinLength = 5;
+            public const int DescriptionMaxLength = 255;
+        }
+
+        public static class CategoryConstants
+        {
+            public const int CategoryNameMinLength = 3;
+            public const int CategoryNameMaxLength = 50;
+        }
+
+        public static class ShippingDetailConstants
+        {
+            public const int AddressMinLength = 1;
+            public const int AddressMaxLength = 255;
+
+            public const int CityMinLength = 1;
+            public const int CityMaxLength = 120;
+
+            public const int PostalCoderMinLength = 1;
+            public const int PostalCodeMaxLength = 20;
+
+            public const int CountryMinLength = 1;
+            public const int CountryMaxLength = 50;
+        }
     }
 }
