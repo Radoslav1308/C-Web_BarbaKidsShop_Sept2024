@@ -1,4 +1,4 @@
-namespace BarbaKidsShop.Web.Models
+namespace BarbaKidsShop.Web.ViewModels
 {
     public class ErrorViewModel
     {

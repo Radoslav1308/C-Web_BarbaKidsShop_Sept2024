@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using BarbaKidsShop.Web.Models;
+using BarbaKidsShop.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BarbaKidsShop.Web.Controllers

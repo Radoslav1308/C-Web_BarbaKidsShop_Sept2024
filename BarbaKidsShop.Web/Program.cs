@@ -1,4 +1,5 @@
-using BarbaKidsShop.Web.Data;
+using BarbaKidsShop.Data;
+using BarbaKidsShop.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,9 +17,10 @@ namespace BarbaKidsShop.Web
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+            builder.Services.AddRazorPages();
 
             var app = builder.Build();
 
@@ -39,6 +41,7 @@ namespace BarbaKidsShop.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

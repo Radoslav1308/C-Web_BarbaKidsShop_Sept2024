@@ -5,6 +5,18 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarbaKidsShop.Web", "BarbaKidsShop.Web\BarbaKidsShop.Web.csproj", "{8FBA794B-96E5-41CE-BD07-F9D0F6C05F22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarbaKidsShop.Web.ViewModels", "BarbaKidsShop.Web.ViewModels\BarbaKidsShop.Web.ViewModels.csproj", "{0D8782FF-E451-44BF-B90E-5EEB882297A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarbaKidsShop.Common", "BarbaKidsShop.Common\BarbaKidsShop.Common.csproj", "{8040A8F2-A231-494E-9656-91AA6B525732}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{E2BF0168-28D1-4196-8249-873983EEDEF9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{EA9A037C-8B46-416D-8164-42F2D28AF89F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarbaKidsShop.Data.Models", "BarbaKidsShop.Data.Models\BarbaKidsShop.Data.Models.csproj", "{2148C097-DFB6-460D-AB3A-1D834653D072}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarbaKidsShop.Data", "BarbaKidsShop.Data\BarbaKidsShop.Data.csproj", "{9D9B37C6-ECD5-4087-B022-97F6860B1072}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +27,31 @@ Global
 		{8FBA794B-96E5-41CE-BD07-F9D0F6C05F22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FBA794B-96E5-41CE-BD07-F9D0F6C05F22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FBA794B-96E5-41CE-BD07-F9D0F6C05F22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D8782FF-E451-44BF-B90E-5EEB882297A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D8782FF-E451-44BF-B90E-5EEB882297A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D8782FF-E451-44BF-B90E-5EEB882297A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D8782FF-E451-44BF-B90E-5EEB882297A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8040A8F2-A231-494E-9656-91AA6B525732}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8040A8F2-A231-494E-9656-91AA6B525732}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8040A8F2-A231-494E-9656-91AA6B525732}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8040A8F2-A231-494E-9656-91AA6B525732}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2148C097-DFB6-460D-AB3A-1D834653D072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2148C097-DFB6-460D-AB3A-1D834653D072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2148C097-DFB6-460D-AB3A-1D834653D072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2148C097-DFB6-460D-AB3A-1D834653D072}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D9B37C6-ECD5-4087-B022-97F6860B1072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D9B37C6-ECD5-4087-B022-97F6860B1072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D9B37C6-ECD5-4087-B022-97F6860B1072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D9B37C6-ECD5-4087-B022-97F6860B1072}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8FBA794B-96E5-41CE-BD07-F9D0F6C05F22} = {E2BF0168-28D1-4196-8249-873983EEDEF9}
+		{0D8782FF-E451-44BF-B90E-5EEB882297A1} = {E2BF0168-28D1-4196-8249-873983EEDEF9}
+		{2148C097-DFB6-460D-AB3A-1D834653D072} = {EA9A037C-8B46-416D-8164-42F2D28AF89F}
+		{9D9B37C6-ECD5-4087-B022-97F6860B1072} = {EA9A037C-8B46-416D-8164-42F2D28AF89F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7B19E90-758C-4903-A04A-C286259230E0}
