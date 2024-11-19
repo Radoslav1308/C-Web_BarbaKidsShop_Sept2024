@@ -14,10 +14,10 @@ namespace BarbaKidsShop.Data.Models
         public int OrderId { get; set; }
 
         [Required]
-        public int CustomerId { get; set; }
+        public string UserId { get; set; } = null!;
 
-        [ForeignKey(nameof(CustomerId))]
-        public Customer Customer { get; set; } = null!;
+        [ForeignKey(nameof(UserId))]
+        public ApplicationUser User { get; set; } = null!;
 
         public DateTime OrderDate { get; set; }
        

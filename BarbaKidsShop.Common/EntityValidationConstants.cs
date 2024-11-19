@@ -8,25 +8,13 @@ namespace BarbaKidsShop.Common
 {
     public static class EntityValidationConstants
     {
-        public static class CustomerConstants
+        public static class ApplicationUserConstants
         {
-            public const int UsernameMinLength = 1;
-            public const int UsernameMaxLength = 255;
-
             public const int FullNameMinLength = 1;
             public const int FullNameMaxLength = 100;
 
-            public const int PhoneNumberMinLength = 4;
-            public const int PhoneNumberMaxLength = 17;
-
             public const int AddressMinLength = 1;
             public const int AddressMaxLength = 255;
-
-            public const int PasswordMinLength = 3;
-            public const int PasswordMaxLength = 255;
-
-            public const int EmailMinLength = 1;
-            public const int EmailMaxLength = 100;
         }
 
         public static class ProductConstants

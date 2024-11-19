@@ -12,7 +12,6 @@ namespace BarbaKidsShop.Data
         {
         }
 
-        public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -43,6 +42,12 @@ namespace BarbaKidsShop.Data
                 .HasOne(o => o.ShippingDetail)
                 .WithOne(sd => sd.Order)
                 .HasForeignKey<Order>(o => o.ShippingDetailId);
+
+            builder.Entity<Order>()
+                .HasOne(o => o.User)
+                .WithMany(o => o.Orders)
+                .HasForeignKey(o => o.UserId);
+
 
             builder
                 .Entity<Category>()

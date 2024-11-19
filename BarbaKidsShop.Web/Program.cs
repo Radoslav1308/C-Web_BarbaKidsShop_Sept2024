@@ -1,7 +1,10 @@
 using BarbaKidsShop.Data;
 using BarbaKidsShop.Data.Models;
+using BarbaKidsShop.Data.Repository;
+using BarbaKidsShop.Data.Repository.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Core.Types;
 
 namespace BarbaKidsShop.Web
 {
@@ -21,6 +24,12 @@ namespace BarbaKidsShop.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
+
+            builder.Services.AddScoped<IRepository<Product, int>, BaseRepository<Product, int>>();
+            builder.Services.AddScoped<IRepository<Category, int>, BaseRepository<Category, int>>();
+            builder.Services.AddScoped<IRepository<Order, int>, BaseRepository<Order, int>>();
+            builder.Services.AddScoped<IRepository<OrderDetail, int>, BaseRepository<OrderDetail, int>>();
+            builder.Services.AddScoped<IRepository<ShippingDetail, int>, BaseRepository<ShippingDetail, int>>();
 
             var app = builder.Build();
 
