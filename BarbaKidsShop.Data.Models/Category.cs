@@ -15,6 +15,7 @@ namespace BarbaKidsShop.Data.Models
         public int CategoryId { get; set; }
 
         [Required]
+        [MinLength(CategoryNameMinLength)]
         [MaxLength(CategoryNameMaxLength)]
         public string Name { get; set; } = null!;
 

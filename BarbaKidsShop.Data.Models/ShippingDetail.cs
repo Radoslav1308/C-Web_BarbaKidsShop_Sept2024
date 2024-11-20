@@ -16,18 +16,22 @@ namespace BarbaKidsShop.Data.Models
         public int ShippingDetailId { get; set; }
 
         [Required]
+        [MinLength(AddressMinLength)]
         [MaxLength(AddressMaxLength)]
         public string Address { get; set; } = null!;
 
         [Required]
+        [MinLength(CityMinLength)]
         [MaxLength(CityMaxLength)]
         public string City { get; set; } = null!;
 
         [Required]
+        [MinLength(PostalCoderMinLength)]
         [MaxLength(PostalCodeMaxLength)]
         public string PostalCode { get; set; } = null!;
 
         [Required]
+        [MinLength(CountryMinLength)]
         [MaxLength(CountryMaxLength)]
         public string Country { get; set; } = null!;
 

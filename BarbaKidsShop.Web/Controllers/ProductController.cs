@@ -32,5 +32,34 @@ namespace BarbaKidsShop.Web.Controllers
 
             return View(products);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            var model = new ProductViewModel();
+
+            model.Categories = await dbContext.Categories
+                .Select(c => new CategoryViewModel
+                {
+                    CategoryId = c.CategoryId,
+                    Name = c.Name
+                })
+                .ToListAsync();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(ProductViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await this.productService.AddProductAsync(model);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

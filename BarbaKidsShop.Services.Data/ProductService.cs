@@ -22,9 +22,20 @@ namespace BarbaKidsShop.Services.Data
         }
 
 
-        public Task AddProductAsync(ProductViewModel model)
+        public async Task AddProductAsync(ProductViewModel model)
         {
-            throw new NotImplementedException();
+            var productToAdd = new Product
+            {
+                ProductName = model.ProductName,
+                Description = model.Description,
+                Price = model.Price,
+                ImageUrl = model.ImageUrl,
+                AddedOn = model.AddedOn,
+                CategoryId = model.CategoryId,
+                IsDeleted = model.IsDeleted,
+            };
+
+            await this.productRepository.AddAsync(productToAdd);
         }
 
         public Task DeleteProductAsync(int id)

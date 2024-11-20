@@ -17,10 +17,12 @@ namespace BarbaKidsShop.Data.Models
         public int Id { get; set; }
 
         [Required]
+        [MinLength(ProductNameMinLength)]
         [MaxLength(ProductNameMaxLength)]
         public string ProductName { get; set; } = null!;
 
         [Required]
+        [MinLength(DescriptionMinLength)]
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; } = null!;
 

@@ -15,7 +15,8 @@ namespace BarbaKidsShop.Web.ViewModels
         public int CategoryId { get; set; }
 
         [Required]
-        [StringLength(CategoryNameMaxLength)]
+        [MinLength(CategoryNameMinLength)]
+        [MaxLength(CategoryNameMaxLength)]
         public string Name { get; set; } = null!;
     }
 }

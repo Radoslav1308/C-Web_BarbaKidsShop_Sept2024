@@ -15,6 +15,7 @@ namespace BarbaKidsShop.Web.ViewModels
         public int Id { get; set; }
 
         [Required]
+        [MinLength(ProductNameMinLength)]
         [MaxLength(ProductNameMaxLength)]
         public string ProductName { get; set; } = null!;
 
@@ -23,6 +24,7 @@ namespace BarbaKidsShop.Web.ViewModels
         public decimal Price { get; set; }
 
         [Required]
+        [MinLength(DescriptionMinLength)]
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; } = null!;
         public string? ImageUrl { get; set; }
