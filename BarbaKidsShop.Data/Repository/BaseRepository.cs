@@ -25,6 +25,7 @@ namespace BarbaKidsShop.Data.Repository
         {
             this.dbSet.Add(item);
             this.dbContext.SaveChanges();
+
         }
 
         public async Task AddAsync(TType item)
@@ -33,32 +34,18 @@ namespace BarbaKidsShop.Data.Repository
             await this.dbContext.SaveChangesAsync();
         }
 
-        public bool Delete(TId id)
+        public bool Delete(TType entity)
         {
-            TType entity = this.GetById(id);
-
-            if (entity == null)
-            {
-                return false;
-            }
-
             this.dbSet.Remove(entity);
             this.dbContext.SaveChanges();
 
             return true;
         }
 
-        public async Task<bool> DeleteAsync(TId id)
+        public async Task<bool> DeleteAsync(TType entity)
         {
-            TType entity = await this.GetByIdAsync(id);
-
-            if (entity == null)
-            {
-                return false;
-            }
-
             this.dbSet.Remove(entity);
-            this.dbContext.SaveChangesAsync();
+            await this.dbContext.SaveChangesAsync();
 
             return true;
         }
@@ -73,14 +60,25 @@ namespace BarbaKidsShop.Data.Repository
             return await this.dbSet.ToListAsync();
         }
 
+        public IQueryable<TType> GetAllAttached()
+        {
+            return this.dbSet.AsQueryable();
+        }
+
         public TType GetById(TId id)
         {
-            return this.dbSet.Find(id);
+            TType entity = this.dbSet
+                .Find(id);
+
+            return entity;
         }
 
         public async Task<TType> GetByIdAsync(TId id)
         {
-            return await this.dbSet.FindAsync(id);
+            TType entity = await this.dbSet
+                .FindAsync(id);
+
+            return entity;
         }
 
         public bool Update(TType item)
@@ -93,7 +91,7 @@ namespace BarbaKidsShop.Data.Repository
 
                 return true;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 return false;
             }
@@ -109,10 +107,104 @@ namespace BarbaKidsShop.Data.Repository
 
                 return true;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 return false;
             }
         }
+
+        //public void Add(TType item)
+        //{
+        //    this.dbSet.Add(item);
+        //    this.dbContext.SaveChanges();
+        //}
+
+        //public async Task AddAsync(TType item)
+        //{
+        //    await this.dbSet.AddAsync(item);
+        //    await this.dbContext.SaveChangesAsync();
+        //}
+
+        //public bool Delete(TId id)
+        //{
+        //    TType entity = this.GetById(id);
+
+        //    if (entity == null)
+        //    {
+        //        return false;
+        //    }
+
+        //    this.dbSet.Remove(entity);
+        //    this.dbContext.SaveChanges();
+
+        //    return true;
+        //}
+
+        //public async Task<bool> DeleteAsync(TId id)
+        //{
+        //    TType entity = await this.GetByIdAsync(id);
+
+        //    if (entity == null)
+        //    {
+        //        return false;
+        //    }
+
+        //    this.dbSet.Remove(entity);
+        //    this.dbContext.SaveChangesAsync();
+
+        //    return true;
+        //}
+
+        //public IEnumerable<TType> GetAll()
+        //{
+        //    return this.dbSet.ToList();
+        //}
+
+        //public async Task<IEnumerable<TType>> GetAllAsync()
+        //{
+        //    return await this.dbSet.ToListAsync();
+        //}
+
+        //public TType GetById(TId id)
+        //{
+        //    return this.dbSet.Find(id);
+        //}
+
+        //public async Task<TType> GetByIdAsync(TId id)
+        //{
+        //    return await this.dbSet.FindAsync(id);
+        //}
+
+        //public bool Update(TType item)
+        //{
+        //    try
+        //    {
+        //        this.dbSet.Attach(item);
+        //        this.dbContext.Entry(item).State = EntityState.Modified;
+        //        this.dbContext.SaveChanges();
+
+        //        return true;
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        //public async Task<bool> UpdateAsync(TType item)
+        //{
+        //    try
+        //    {
+        //        this.dbSet.Attach(item);
+        //        this.dbContext.Entry(item).State = EntityState.Modified;
+        //        await this.dbContext.SaveChangesAsync();
+
+        //        return true;
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        return false;
+        //    }
+        //}
     }
 }

@@ -12,12 +12,6 @@ namespace BarbaKidsShop.Data.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        [Required, MaxLength(FullNameMaxLength)]
-        public string FullName { get; set; } = null!;
-
-        [Required, MaxLength(AddressMaxLength)]
-        public string Address { get; set; } = null!;
-
         public ICollection<Order> Orders { get; set; } = new List<Order>();
     }
 }

@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BarbaKidsShop.Data.Models\BarbaKidsShop.Data.Models.csproj" />
+    <ProjectReference Include="..\BarbaKidsShop.Data\BarbaKidsShop.Data.csproj" />
+    <ProjectReference Include="..\BarbaKidsShop.Web.ViewModels\BarbaKidsShop.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

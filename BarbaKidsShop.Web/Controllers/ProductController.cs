@@ -1,0 +1,36 @@
+﻿using BarbaKidsShop.Data;
+using BarbaKidsShop.Data.Models;
+using BarbaKidsShop.Services.Data.Interfaces;
+using BarbaKidsShop.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+namespace BarbaKidsShop.Web.Controllers
+{
+    public class ProductController : Controller
+    {
+        private readonly ApplicationDbContext dbContext;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly IProductService productService;
+
+        public ProductController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, IProductService productService)
+        {
+            this.dbContext = dbContext;
+            this.userManager = userManager;
+            this.productService = productService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var currentUserId = userManager.GetUserId(User);
+
+            IEnumerable<ProductIndexViewModel> products =
+                await this.productService.IndexGetAllProductsOrderedByPriceAsync();
+
+            return View(products);
+        }
+    }
+}

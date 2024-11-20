@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BarbaKidsShop.Common\BarbaKidsShop.Common.csproj" />
+  </ItemGroup>
+
 </Project>

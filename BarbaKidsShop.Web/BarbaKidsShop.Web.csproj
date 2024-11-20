@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BarbaKidsShop.Data\BarbaKidsShop.Data.csproj" />
+    <ProjectReference Include="..\BarbaKidsShop.Services.Data\BarbaKidsShop.Services.Data.csproj" />
     <ProjectReference Include="..\BarbaKidsShop.Web.ViewModels\BarbaKidsShop.Web.ViewModels.csproj" />
   </ItemGroup>
 

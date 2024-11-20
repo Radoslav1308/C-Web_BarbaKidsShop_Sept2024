@@ -2,6 +2,8 @@ using BarbaKidsShop.Data;
 using BarbaKidsShop.Data.Models;
 using BarbaKidsShop.Data.Repository;
 using BarbaKidsShop.Data.Repository.Interfaces;
+using BarbaKidsShop.Services.Data;
+using BarbaKidsShop.Services.Data.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol.Core.Types;
@@ -30,6 +32,8 @@ namespace BarbaKidsShop.Web
             builder.Services.AddScoped<IRepository<Order, int>, BaseRepository<Order, int>>();
             builder.Services.AddScoped<IRepository<OrderDetail, int>, BaseRepository<OrderDetail, int>>();
             builder.Services.AddScoped<IRepository<ShippingDetail, int>, BaseRepository<ShippingDetail, int>>();
+
+            builder.Services.AddScoped<IProductService, ProductService>();
 
             var app = builder.Build();
 
