@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using BarbaKidsShop.Data.Repository.Interfaces;
@@ -48,6 +49,22 @@ namespace BarbaKidsShop.Data.Repository
             await this.dbContext.SaveChangesAsync();
 
             return true;
+        }
+
+        public TType FirstOrDefault(Func<TType, bool> predicate)
+        {
+            TType entity = this.dbSet
+                .FirstOrDefault(predicate);
+
+            return entity;
+        }
+
+        public async Task<TType> FirstOrDefaultAsync(Expression<Func<TType, bool>> predicate)
+        {
+            TType entity = await this.dbSet
+                .FirstOrDefaultAsync(predicate);
+
+            return entity;
         }
 
         public IEnumerable<TType> GetAll()

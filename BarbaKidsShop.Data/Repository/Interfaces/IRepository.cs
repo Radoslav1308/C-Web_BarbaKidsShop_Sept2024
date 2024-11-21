@@ -30,5 +30,9 @@ namespace BarbaKidsShop.Data.Repository.Interfaces
         bool Update(TType item);
 
         Task<bool> UpdateAsync(TType item);
+
+        TType FirstOrDefault(Func<TType, bool> predicate);
+
+        Task<TType> FirstOrDefaultAsync(Expression<Func<TType, bool>> predicate);
     }
 }

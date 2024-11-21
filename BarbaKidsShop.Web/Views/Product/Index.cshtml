@@ -32,19 +32,21 @@
 
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">@product.ProductName</h5>
-                        <p class="card-text">Price: @product.Price.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR"))</p>
+                        <p class="card-text">Price: @product.Price.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("bg-BG"))</p>
                         <div class="d-flex justify-content-between mt-auto">
-                            @if (User?.Identity?.IsAuthenticated == false) // Make it work when user is Not Authenticated
+                            @if (User?.Identity?.IsAuthenticated == true) // Make it work when user is Not Authenticated
                             {
                                 <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning me-2 w-50">Edit</a>
-                                <form asp-controller="Product" asp-action="AddToCart" method="post" class="w-50">
-                                    <input type="hidden" name="id" value="@product.Id" />
-                                    <button type="submit" class="btn btn-success w-100">Buy</button>
-                                </form>
+                                <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger w-50">Delete</a>
                             }
                             else
                             {
-                                <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="btn btn-info w-100">Details</a>
+                                <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="btn btn-info me-2 w-50">Details</a>
+                                @* <form asp-controller="Product" asp-action="AddToCart" method="post" class="w-50">
+                                    <input type="hidden" name="id" value="@product.Id" />
+                                    <button type="submit" class="btn btn-success w-50">Buy</button>
+                                </form> *@
+                                <a asp-controller="Product" asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-success w-50">Buy</a>
                             }
                         </div>
                     </div>

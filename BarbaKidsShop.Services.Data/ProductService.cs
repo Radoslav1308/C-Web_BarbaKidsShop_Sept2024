@@ -45,17 +45,12 @@ namespace BarbaKidsShop.Services.Data
             throw new NotImplementedException();
         }
 
-        public async Task<ProductEditViewModel> GetEditProductModelAsync(int id)
+        public async Task<ProductEditViewModel> GetEditProductModelByIdAsync(int id)
         {
             var product = await this.productRepository
                 .GetByIdAsync(id);
 
-            if (product == null)
-            {
-                return null;
-            }
-
-            return new ProductEditViewModel
+            var productEditViewModel =  new ProductEditViewModel
             {
                 Id = product.Id,
                 ProductName = product.ProductName,
@@ -70,16 +65,29 @@ namespace BarbaKidsShop.Services.Data
                         Name = c.Name
                     }).ToListAsync()
             };
+
+            return productEditViewModel;
         }
 
-        public Task<ProductDetailsViewModel> GetProductDetailsAsync(int id)
+        public async Task<ProductDetailsViewModel> GetProductDetailsByIdAsync(int id)
         {
-            throw new NotImplementedException();
-        }
+            var product = await this.productRepository
+                .GetAllAttached()
+                .Where(p => p.Id == id)
+                .Include(p => p.Category)
+                .FirstOrDefaultAsync();
 
-        public Task<ProductDetailsViewModel> GetProductDetailsByIdAsync(int id)
-        {
-            throw new NotImplementedException();
+            var productDetailsViewModel = new ProductDetailsViewModel
+            {
+                Id = product.Id,
+                ProductName = product.ProductName,
+                Description = product.Description,
+                Price = product.Price,
+                ImageUrl = product.ImageUrl,
+                CategoryName = product.Category != null ? product.Category.Name : "No Category"
+            };
+
+            return productDetailsViewModel;
         }
 
         public async Task<IEnumerable<ProductIndexViewModel>> IndexGetAllProductsOrderedByPriceAsync()

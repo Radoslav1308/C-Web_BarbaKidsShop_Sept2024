@@ -66,7 +66,8 @@ namespace BarbaKidsShop.Web.Controllers
         //[Authorize]
         public async Task<IActionResult> Edit(int id)
         {
-            var product = await productService.GetEditProductModelAsync(id);
+            var product = await productService.GetEditProductModelByIdAsync(id);
+
             if (product == null)
             {
                 return NotFound();
@@ -86,6 +87,19 @@ namespace BarbaKidsShop.Web.Controllers
 
             await productService.UpdateProductAsync(model);
             return RedirectToAction(nameof(Index));
+        }
+
+        //[AllowAnonymous]
+        public async Task<IActionResult> Details(int id)
+        {
+            var product = await productService.GetProductDetailsByIdAsync(id); 
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
         }
     }
 }
