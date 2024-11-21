@@ -15,10 +15,12 @@ namespace BarbaKidsShop.Services.Data
     public class ProductService : IProductService
     {
         private IRepository<Product, int> productRepository;
+        private IRepository<Category, int> categoryRepository;
 
-        public ProductService(IRepository<Product, int> productRepository)
+        public ProductService(IRepository<Product, int> productRepository, IRepository<Category, int> categoryRepository)
         {
             this.productRepository = productRepository;
+            this.categoryRepository = categoryRepository;
         }
 
 
@@ -39,6 +41,38 @@ namespace BarbaKidsShop.Services.Data
         }
 
         public Task DeleteProductAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<ProductEditViewModel> GetEditProductModelAsync(int id)
+        {
+            var product = await this.productRepository
+                .GetByIdAsync(id);
+
+            if (product == null)
+            {
+                return null;
+            }
+
+            return new ProductEditViewModel
+            {
+                Id = product.Id,
+                ProductName = product.ProductName,
+                Description = product.Description,
+                Price = product.Price,
+                ImageUrl = product.ImageUrl,
+                CategoryId = product.CategoryId,
+                Categories = await this.categoryRepository.GetAllAttached()
+                    .Select(c => new CategoryViewModel
+                    {
+                        CategoryId = c.CategoryId,
+                        Name = c.Name
+                    }).ToListAsync()
+            };
+        }
+
+        public Task<ProductDetailsViewModel> GetProductDetailsAsync(int id)
         {
             throw new NotImplementedException();
         }
@@ -65,9 +99,21 @@ namespace BarbaKidsShop.Services.Data
             return products;
         }
 
-        public Task UpdateProductAsync(ProductViewModel model)
+        public async Task UpdateProductAsync(ProductViewModel model)
         {
-            throw new NotImplementedException();
+            var product = await this.productRepository.GetByIdAsync(model.Id);
+            if (product == null)
+            {
+                throw new Exception("Product not found.");
+            }
+               
+            product.ProductName = model.ProductName;
+            product.Price = model.Price;
+            product.Description = model.Description;
+            product.ImageUrl = model.ImageUrl;
+            product.CategoryId = model.CategoryId;
+
+            await productRepository.UpdateAsync(product);
         }
     }
 }

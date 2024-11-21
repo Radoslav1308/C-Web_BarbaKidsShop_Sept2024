@@ -12,21 +12,19 @@ namespace BarbaKidsShop.Web.Controllers
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext dbContext;
-        private readonly UserManager<ApplicationUser> userManager;
+        //private readonly UserManager<ApplicationUser> userManager;
         private readonly IProductService productService;
 
-        public ProductController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, IProductService productService)
+        public ProductController(ApplicationDbContext dbContext,/* UserManager<ApplicationUser> userManager*/ IProductService productService)
         {
             this.dbContext = dbContext;
-            this.userManager = userManager;
+            //this.userManager = userManager;
             this.productService = productService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var currentUserId = userManager.GetUserId(User);
-
             IEnumerable<ProductIndexViewModel> products =
                 await this.productService.IndexGetAllProductsOrderedByPriceAsync();
 
@@ -34,6 +32,7 @@ namespace BarbaKidsShop.Web.Controllers
         }
 
         [HttpGet]
+        //[Authorize]
         public async Task<IActionResult> Add()
         {
             var model = new ProductViewModel();
@@ -50,6 +49,7 @@ namespace BarbaKidsShop.Web.Controllers
         }
 
         [HttpPost]
+        //[Authorize]
         public async Task<IActionResult> Add(ProductViewModel model)
         {
             if (!ModelState.IsValid)
@@ -59,6 +59,32 @@ namespace BarbaKidsShop.Web.Controllers
 
             await this.productService.AddProductAsync(model);
 
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        //[Authorize]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var product = await productService.GetEditProductModelAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
+        [HttpPost]
+        //[Authorize]
+        public async Task<IActionResult> Edit(ProductViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await productService.UpdateProductAsync(model);
             return RedirectToAction(nameof(Index));
         }
     }

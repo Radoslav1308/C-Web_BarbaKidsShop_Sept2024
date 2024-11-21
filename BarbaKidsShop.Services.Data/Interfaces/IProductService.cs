@@ -12,7 +12,8 @@ namespace BarbaKidsShop.Services.Data.Interfaces
     {
         Task<IEnumerable<ProductIndexViewModel>> IndexGetAllProductsOrderedByPriceAsync();
         Task AddProductAsync(ProductViewModel model);
-        Task<ProductDetailsViewModel> GetProductDetailsByIdAsync(int id);
+        Task<ProductEditViewModel> GetEditProductModelAsync(int id);
+        Task<ProductDetailsViewModel> GetProductDetailsAsync(int id);
         Task UpdateProductAsync(ProductViewModel model);
         Task DeleteProductAsync(int id);
     }

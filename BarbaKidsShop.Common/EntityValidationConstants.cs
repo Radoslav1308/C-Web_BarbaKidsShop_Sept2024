@@ -24,6 +24,9 @@ namespace BarbaKidsShop.Common
 
             public const int DescriptionMinLength = 5;
             public const int DescriptionMaxLength = 255;
+
+            public const int MinQuantity = 1;
+            public const int MaxQuantity = 10;
         }
 
         public static class CategoryConstants

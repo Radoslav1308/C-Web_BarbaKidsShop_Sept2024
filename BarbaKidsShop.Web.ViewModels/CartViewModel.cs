@@ -10,19 +10,23 @@ using static BarbaKidsShop.Common.EntityValidationConstants.ProductConstants;
 
 namespace BarbaKidsShop.Web.ViewModels
 {
-    public class ProductIndexViewModel
+    public class CartViewModel
     {
-        public int Id { get; set; }
+        public int ProductId { get; set; }
 
         [Required]
         [MinLength(ProductNameMinLength)]
         [MaxLength(ProductNameMaxLength)]
-        public string ProductName { get; set; } = null!;
+        public string ProductName { get; set; } = string.Empty;
 
         [Required]
         [Column(TypeName = "decimal(10,2)")]
         public decimal Price { get; set; }
-        public string? ImageUrl { get; set; }
+
+        [Required]
+        [Range(MinQuantity, MaxQuantity)]
+        public int Quantity { get; set; }
+
+        public decimal TotalPrice => Price * Quantity;
     }
 }
-
