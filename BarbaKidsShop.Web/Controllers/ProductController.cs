@@ -101,5 +101,32 @@ namespace BarbaKidsShop.Web.Controllers
 
             return View(product);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var product = await productService.GetProductDeleteByIdAsync(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(ProductDeleteViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await productService.SoftDeleteProductAsync(model);
+            await dbContext.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
     }
 }

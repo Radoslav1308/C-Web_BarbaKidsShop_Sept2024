@@ -40,11 +40,6 @@ namespace BarbaKidsShop.Services.Data
             await this.productRepository.AddAsync(productToAdd);
         }
 
-        public Task DeleteProductAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<ProductEditViewModel> GetEditProductModelByIdAsync(int id)
         {
             var product = await this.productRepository
@@ -94,6 +89,7 @@ namespace BarbaKidsShop.Services.Data
         {
             IEnumerable<ProductIndexViewModel> products = await this.productRepository
                 .GetAllAttached()
+                .Where(p => p.IsDeleted == false)
                 .OrderBy(p => p.Price)
                 .Select(p => new ProductIndexViewModel
                 {
@@ -122,6 +118,31 @@ namespace BarbaKidsShop.Services.Data
             product.CategoryId = model.CategoryId;
 
             await productRepository.UpdateAsync(product);
+        }
+
+        public async Task<ProductDeleteViewModel> GetProductDeleteByIdAsync(int id)
+        {
+            var product = await this.productRepository.GetByIdAsync(id);
+
+            var productDeleteViewModel =  new ProductDeleteViewModel
+            {
+                Id = product.Id,
+                ProductName = product.ProductName
+            };
+
+            return productDeleteViewModel;
+        }
+
+        public async Task SoftDeleteProductAsync(ProductDeleteViewModel model)
+        {
+            var product = await this.productRepository.GetByIdAsync(model.Id);
+
+            if (product == null)
+            {
+                throw new Exception("Product not found.");
+            }
+
+            product.IsDeleted = true; // Mark as deleted
         }
     }
 }
