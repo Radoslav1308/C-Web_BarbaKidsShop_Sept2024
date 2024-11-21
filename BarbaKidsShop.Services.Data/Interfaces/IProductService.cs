@@ -14,7 +14,7 @@ namespace BarbaKidsShop.Services.Data.Interfaces
         Task AddProductAsync(ProductViewModel model);
         Task<ProductEditViewModel> GetEditProductModelAsync(int id);
         Task<ProductDetailsViewModel> GetProductDetailsAsync(int id);
-        Task UpdateProductAsync(ProductViewModel model);
+        Task UpdateProductAsync(ProductEditViewModel model);
         Task DeleteProductAsync(int id);
     }
 }

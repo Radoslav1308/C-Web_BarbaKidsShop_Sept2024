@@ -31,7 +31,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="productsDropdown">
                                 <li><a class="dropdown-item" asp-controller="Product" asp-action="Index">Product List</a></li>
-                                @if (User.Identity.IsAuthenticated)
+                                @if (User.Identity.IsAuthenticated == false) // Make it work when user is Not Authenticated
                                 {
                                     <li><a class="dropdown-item" asp-controller="Product" asp-action="Add">Add Product</a></li>
                                 }

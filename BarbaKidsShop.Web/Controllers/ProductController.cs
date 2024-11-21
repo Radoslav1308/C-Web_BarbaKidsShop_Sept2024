@@ -77,7 +77,7 @@ namespace BarbaKidsShop.Web.Controllers
 
         [HttpPost]
         //[Authorize]
-        public async Task<IActionResult> Edit(ProductViewModel model)
+        public async Task<IActionResult> Edit(ProductEditViewModel model)
         {
             if (!ModelState.IsValid)
             {

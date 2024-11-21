@@ -34,7 +34,7 @@
                         <h5 class="card-title">@product.ProductName</h5>
                         <p class="card-text">Price: @product.Price.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR"))</p>
                         <div class="d-flex justify-content-between mt-auto">
-                            @if (User?.Identity?.IsAuthenticated == true)
+                            @if (User?.Identity?.IsAuthenticated == false) // Make it work when user is Not Authenticated
                             {
                                 <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning me-2 w-50">Edit</a>
                                 <form asp-controller="Product" asp-action="AddToCart" method="post" class="w-50">

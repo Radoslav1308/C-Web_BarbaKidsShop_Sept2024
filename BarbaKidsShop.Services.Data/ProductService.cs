@@ -99,7 +99,7 @@ namespace BarbaKidsShop.Services.Data
             return products;
         }
 
-        public async Task UpdateProductAsync(ProductViewModel model)
+        public async Task UpdateProductAsync(ProductEditViewModel model)
         {
             var product = await this.productRepository.GetByIdAsync(model.Id);
             if (product == null)
