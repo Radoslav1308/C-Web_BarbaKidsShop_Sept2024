@@ -18,9 +18,5 @@ namespace BarbaKidsShop.Web.ViewModels
         [MinLength(ProductNameMinLength)]
         [MaxLength(ProductNameMaxLength)]
         public string ProductName { get; set; } = null!;
-
-        [Required]
-        [Column(TypeName = "decimal(10,2)")]
-        public decimal Price { get; set; }
     }
 }
