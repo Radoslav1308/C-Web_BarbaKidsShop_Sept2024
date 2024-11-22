@@ -1,0 +1,44 @@
+﻿.card-header.bg-success {
+    background-color: #28a745; /* Green color */
+    color: white;
+}
+
+/* Button Styling */
+.btn-success {
+    background-color: #28a745; /* Green button color */
+    border-color: #28a745;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+    .btn-success:hover {
+        background-color: #218838; /* Darker green on hover */
+        box-shadow: 0 4px 10px rgba(40, 167, 69, 0.5);
+        transform: scale(1.02);
+    }
+
+/* Form Inputs */
+.form-control {
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .form-control:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+    }
+
+.form-floating {
+    margin-bottom: 1.5rem;
+}
+
+/* Card Shadows */
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (min-height: 768px) {
+    .row.align-items-center {
+        min-height: 70vh;
+    }
+}
