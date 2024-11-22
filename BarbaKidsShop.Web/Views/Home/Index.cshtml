@@ -1,8 +1,168 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Welcome to BarbaKidsShop!";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Hero Section -->
+<div class="container-fluid bg-light py-5">
+    <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+            <h1 class="display-3 fw-bold text-primary">Welcome to BarbaKidsShop!</h1>
+            <p class="lead text-secondary mt-3">
+                Your one-stop shop for kids' clothing, toys, and essentials. Quality and joy delivered to your doorstep!
+            </p>
+            <a href="/Product/Index" class="btn btn-primary btn-lg me-3">Shop Now</a>
+            <a href="/About" class="btn btn-outline-secondary btn-lg">Learn More</a>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="https://files.oaiusercontent.com/file-r12u0e2XGUzdDzAlmHUTLCwn?se=2024-11-21T19%3A43%3A01Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D1ce85057-3da4-4138-b861-53c8e809c247.webp&sig=3buJSmHmT1PyvYULMa5Fqs%2BKzwZ3n9qRNpT3mwYE97g%3D" alt="Kids playing with toys" class="img-fluid rounded shadow" />
+        </div>
+    </div>
+</div>
+
+<!-- Categories Section -->
+<div class="container py-5">
+    <h2 class="text-center mb-4 fw-bold text-secondary">Explore Our Categories</h2>
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow rounded">
+                <img src="https://files.oaiusercontent.com/file-R2jFm6ANXeL1Y8QmZlJNBvZj?se=2024-11-21T19%3A46%3A14Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Dda7beb1f-4753-4a4d-bea7-47d8c0c9f070.webp&sig=tTY4S1XGb3l18VNRg27lii5Fdc8T44efgjG1gcUScaQ%3D" alt="Kids Clothing" class="card-img-top" />
+                <div class="card-body">
+                    <h5 class="fw-bold">Clothing</h5>
+                    <p class="text-muted">Trendy, comfy, and affordable outfits for your little ones.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow rounded">
+                <img src="https://files.oaiusercontent.com/file-jnKrM47LGoPc4I7L40RshcMe?se=2024-11-21T19%3A47%3A43Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Dd67ea77c-af12-4517-8d3d-4ac2dd1b5144.webp&sig=S/B2%2BmR79l6uSca/QryfTzUcFyDg8AiNR2eHPAC7UEI%3D" alt="Kids Toys" class="card-img-top" />
+                <div class="card-body">
+                    <h5 class="fw-bold">Toys</h5>
+                    <p class="text-muted">From educational to fun – toys for every age and stage.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow rounded">
+                <img src="https://files.oaiusercontent.com/file-qixY6tRuihqgxOiYPNIKqeh7?se=2024-11-22T14%3A44%3A20Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D6de60f1c-ed87-49cf-9771-88d3152847d7.webp&sig=KqL4mf1yyFFtSMq10PC8bjI/QRZFvnNedfhl%2BlDwCZw%3D" alt="Essentials" class="card-img-top" />
+                <div class="card-body">
+                    <h5 class="fw-bold">Essentials</h5>
+                    <p class="text-muted">Everything you need to make parenting easier and fun.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Best Sellers Section -->
+<div class="container-fluid bg-primary text-white py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold">Our Best Sellers</h2>
+        <p class="text-center">Top picks loved by parents and kids alike!</p>
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <div class="card bg-light border-0 shadow-sm">
+                    <img src="https://files.oaiusercontent.com/file-W0Q81aFQblK5tkjwjmUxTajp?se=2024-11-22T14%3A46%3A17Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Db809ad74-716d-473a-8f2f-dce24097e1f6.webp&sig=2W3yB7NXPhw8SDZCuKSAIyDMSAHlN1OS6281NcVflJg%3D" alt="Product 1" class="card-img-top" />
+                    <div class="card-body">
+                        <h6 class="fw-bold text-primary">Toy Car</h6>
+                        <p class="text-muted">14.99лв.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card bg-light border-0 shadow-sm">
+                    <img src="https://files.oaiusercontent.com/file-dCU9AKzwFtupmH3nQmsMpMyN?se=2024-11-22T14%3A47%3A29Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Db6cc1cda-d1ca-4e5a-9abb-1ccb859a4914.webp&sig=IFBhpAPliaoYIYJvlsi0Lxz%2Bm8eBrqW4lcsy0%2BAdAew%3D" alt="Product 2" class="card-img-top" />
+                    <div class="card-body">
+                        <h6 class="fw-bold text-primary">Girl's Dress</h6>
+                        <p class="text-muted">29.99лв.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card bg-light border-0 shadow-sm">
+                    <img src="https://via.placeholder.com/200" alt="Product 3" class="card-img-top" />
+                    <div class="card-body">
+                        <h6 class="fw-bold text-primary">Stuffed Teddy</h6>
+                        <p class="text-muted">19.99лв.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card bg-light border-0 shadow-sm">
+                    <img src="https://via.placeholder.com/200" alt="Product 4" class="card-img-top" />
+                    <div class="card-body">
+                        <h6 class="fw-bold text-primary">Baby Stroller</h6>
+                        <p class="text-muted">149.99лв.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4 fw-bold text-secondary">Why Choose Us?</h2>
+    <div class="row text-center">
+        <div class="col-md-4">
+            <div class="card p-4 border-0 shadow rounded">
+                <i class="bi bi-bag-check display-4 text-primary mb-3"></i>
+                <h5 class="fw-bold">Quality Products</h5>
+                <p class="text-muted">We ensure only the best for you, with top-tier products across all categories.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-4 border-0 shadow rounded">
+                <i class="bi bi-truck display-4 text-success mb-3"></i>
+                <h5 class="fw-bold">Fast Delivery</h5>
+                <p class="text-muted">Experience swift and reliable delivery at your doorstep.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-4 border-0 shadow rounded">
+                <i class="bi bi-heart display-4 text-danger mb-3"></i>
+                <h5 class="fw-bold">Customer Care</h5>
+                <p class="text-muted">Our support team is here to assist you with any inquiries.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Customer Reviews Section -->
+<div class="container py-5">
+    <h2 class="text-center mb-4 fw-bold text-secondary">What Our Customers Say</h2>
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <blockquote class="blockquote">
+                <p class="fst-italic">"Amazing quality and fast delivery! My kids love the toys!"</p>
+                <footer class="blockquote-footer">Maria T.</footer>
+            </blockquote>
+        </div>
+        <div class="col-md-4 mb-4">
+            <blockquote class="blockquote">
+                <p class="fst-italic">"Fantastic customer service. The clothing fits perfectly."</p>
+                <footer class="blockquote-footer">James R.</footer>
+            </blockquote>
+        </div>
+        <div class="col-md-4 mb-4">
+            <blockquote class="blockquote">
+                <p class="fst-italic">"Affordable prices and great variety. Highly recommend!"</p>
+                <footer class="blockquote-footer">Anna K.</footer>
+            </blockquote>
+        </div>
+    </div>
+</div>
+
+<!-- Newsletter Section -->
+<div class="container-fluid bg-warning text-white py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold">Stay Connected!</h2>
+        <p>Subscribe for exclusive discounts and product updates.</p>
+        <form class="row justify-content-center">
+            <div class="col-md-6">
+                <input type="email" class="form-control mb-2" placeholder="Enter your email address" required />
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-dark w-100">Subscribe</button>
+            </div>
+        </form>
+    </div>
 </div>
