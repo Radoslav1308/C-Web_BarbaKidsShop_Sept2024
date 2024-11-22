@@ -1,0 +1,62 @@
+﻿.save-btn {
+    background-color: #f39c12;
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+    .save-btn:hover {
+        background-color: #e67e22;
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+
+.back-to-list-btn {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+    .back-to-list-btn:hover {
+        background-color: #5a6268;
+    }
+
+/* Custom Input Focus Effect */
+.custom-input {
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+    .custom-input:focus {
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+        border-color: #007bff;
+    }
+
+/* Form Layout and Design */
+.form-label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.form-control {
+    font-size: 1rem;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* Card and Container Styling */
+.container {
+    max-width: 960px;
+}
+
+.row {
+    margin-bottom: 20px;
+}
+
+/* Card Divider */
+hr {
+    border-top: 1px solid #f1f1f1;
+}
