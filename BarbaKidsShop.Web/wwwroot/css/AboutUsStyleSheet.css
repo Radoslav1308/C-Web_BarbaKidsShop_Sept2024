@@ -1,0 +1,35 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap');
+
+.hover-zoom:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.team-card {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+    .team-card.animate__fadeIn {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+.team-img {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+    .team-img.animate__zoomIn {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+/* Hover Effect for cards */
+.team-card:hover {
+    transform: translateY(-10px);
+    transition: transform 0.3s ease;
+}

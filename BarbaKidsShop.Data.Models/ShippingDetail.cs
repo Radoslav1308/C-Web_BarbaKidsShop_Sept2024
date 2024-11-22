@@ -37,8 +37,6 @@ namespace BarbaKidsShop.Data.Models
 
         [Required]
         public int OrderId { get; set; }
-
-        [ForeignKey(nameof(OrderId))]
         public Order Order { get; set; } = null!;
     }
 }
