@@ -1,4 +1,4 @@
-﻿@using BarbaKidsShop.Web.ViewModels
+﻿@* @using BarbaKidsShop.Web.ViewModels
 
 @model ProductDetailsViewModel
 
@@ -36,4 +36,51 @@
     </dl>
 
     <a href="@Url.Action("Index", "Product")" class="btn btn-secondary">Back to List</a>
+</div> *@
+
+@using BarbaKidsShop.Web.ViewModels
+
+@model ProductDetailsViewModel
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<link rel="stylesheet" href="~/css/DetailsStyleSheet.css" asp-append-version="true" />
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary">@ViewData["Title"]</h2>
+    </div>
+    <div class="card shadow-lg rounded-lg product-card">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3 text-muted">Product Name</dt>
+                <dd class="col-sm-9 text-dark">@Model.ProductName</dd>
+
+                <dt class="col-sm-3 text-muted">Price</dt>
+                <dd class="col-sm-9 text-dark">@Model.Price.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("bg-BG"))</dd>
+
+                <dt class="col-sm-3 text-muted">Description</dt>
+                <dd class="col-sm-9 text-dark">@Model.Description</dd>
+
+                <dt class="col-sm-3 text-muted">Image</dt>
+                <dd class="col-sm-9">
+                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                    {
+                        <img src="@Model.ImageUrl" alt="Product Image" class="img-fluid rounded shadow-lg product-image" />
+                    }
+                    else
+                    {
+                        <span>No image available</span>
+                    }
+                </dd>
+
+                <dt class="col-sm-3 text-muted">Category</dt>
+                <dd class="col-sm-9 text-dark">@Model.CategoryName</dd>
+            </dl>
+
+            <a href="@Url.Action("Index", "Product")" class="btn btn-secondary w-100 py-2 mt-3 rounded back-to-list-btn">Back to List</a>
+        </div>
+    </div>
 </div>
