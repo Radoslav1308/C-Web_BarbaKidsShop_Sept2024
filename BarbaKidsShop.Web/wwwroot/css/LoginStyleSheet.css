@@ -1,0 +1,55 @@
+﻿.bg-primary-solid {
+    background-color: #258cfb;
+    color: white;
+}
+
+/* Form Inputs */
+.form-control {
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .form-control:focus {
+        border-color: #258cfb;
+        box-shadow: 0 0 5px rgba(37, 140, 251, 0.5);
+    }
+
+/* Buttons */
+.btn-primary {
+    background-color: #258cfb;
+    border-color: #258cfb;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #1a6ccd;
+        box-shadow: 0 4px 10px rgba(37, 140, 251, 0.5);
+        transform: scale(1.02);
+    }
+
+.btn-outline-primary {
+    border-color: #258cfb;
+    color: #258cfb;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    .btn-outline-primary:hover {
+        background-color: #258cfb;
+        color: #fff;
+    }
+
+/* Shadow Styling */
+.shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-sm {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Card Height */
+@media (min-height: 768px) {
+    .row.align-items-center {
+        min-height: 70vh;
+    }
+}
