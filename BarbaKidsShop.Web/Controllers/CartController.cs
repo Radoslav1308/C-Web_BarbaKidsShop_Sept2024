@@ -36,5 +36,7 @@ namespace BarbaKidsShop.Web.Controllers
 
             return View(cartItems);
         }
+
+
     }
 }

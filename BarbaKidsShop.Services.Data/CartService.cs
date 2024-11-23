@@ -24,11 +24,7 @@ namespace BarbaKidsShop.Services.Data
             this.orderDetailRepository = orderDetailRepository;
             this.productRepository = productRepository;
         }
-
-        public Task<CartViewModel> GetAddProductToCartAsync()
-        {
-            throw new NotImplementedException();
-        }
+        
         public Task AddToCartAsync(CartViewModel model)
         {
             throw new NotImplementedException();
