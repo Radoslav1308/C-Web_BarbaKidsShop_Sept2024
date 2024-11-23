@@ -23,7 +23,19 @@ namespace BarbaKidsShop.Services.Data
             this.categoryRepository = categoryRepository;
         }
 
+        public async Task<ProductViewModel> GetAddProductModelByIdAsync()
+        {
+            var model = new ProductViewModel();
 
+            model.Categories = await this.categoryRepository.GetAllAttached()
+                    .Select(c => new CategoryViewModel
+                    {
+                        CategoryId = c.CategoryId,
+                        Name = c.Name
+                    }).ToListAsync();
+
+            return model;
+        }
         public async Task AddProductAsync(ProductViewModel model)
         {
             var productToAdd = new Product
@@ -143,6 +155,6 @@ namespace BarbaKidsShop.Services.Data
             }
 
             product.IsDeleted = true; // Mark as deleted
-        }
+        }     
     }
 }

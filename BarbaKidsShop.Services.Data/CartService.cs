@@ -16,17 +16,19 @@ namespace BarbaKidsShop.Services.Data
     {
         private IRepository<Order, int> orderRepository;
         private IRepository<OrderDetail, int> orderDetailRepository;
-        //private IRepository<ApplicationUser, int> userRepository;
         private IRepository<Product, int> productRepository;
 
-        public CartService(IRepository<Order, int> orderRepository, IRepository<OrderDetail, int> orderDetailRepository, /*IRepository<ApplicationUser, int> userRepository*/ IRepository<Product, int> productRepository)
+        public CartService(IRepository<Order, int> orderRepository, IRepository<OrderDetail, int> orderDetailRepository, IRepository<Product, int> productRepository)
         {
             this.orderRepository = orderRepository;
             this.orderDetailRepository = orderDetailRepository;
-            //this.userRepository = userRepository;
             this.productRepository = productRepository;
         }
 
+        public Task<CartViewModel> GetAddProductToCartAsync()
+        {
+            throw new NotImplementedException();
+        }
         public Task AddToCartAsync(CartViewModel model)
         {
             throw new NotImplementedException();

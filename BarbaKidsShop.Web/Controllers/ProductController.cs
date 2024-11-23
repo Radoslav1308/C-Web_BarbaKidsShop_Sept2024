@@ -33,15 +33,7 @@ namespace BarbaKidsShop.Web.Controllers
         [Authorize]
         public async Task<IActionResult> Add()
         {
-            var model = new ProductViewModel();
-
-            model.Categories = await dbContext.Categories
-                .Select(c => new CategoryViewModel
-                {
-                    CategoryId = c.CategoryId,
-                    Name = c.Name
-                })
-                .ToListAsync();
+            var model = await this.productService.GetAddProductModelByIdAsync();
 
             return View(model);
         }

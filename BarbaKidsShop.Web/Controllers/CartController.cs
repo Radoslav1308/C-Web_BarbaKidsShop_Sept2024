@@ -2,6 +2,7 @@
 using BarbaKidsShop.Data.Models;
 using BarbaKidsShop.Services.Data.Interfaces;
 using BarbaKidsShop.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
