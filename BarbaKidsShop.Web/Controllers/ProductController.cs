@@ -12,13 +12,11 @@ namespace BarbaKidsShop.Web.Controllers
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext dbContext;
-        //private readonly UserManager<ApplicationUser> userManager;
         private readonly IProductService productService;
 
-        public ProductController(ApplicationDbContext dbContext,/* UserManager<ApplicationUser> userManager*/ IProductService productService)
+        public ProductController(ApplicationDbContext dbContext,IProductService productService)
         {
             this.dbContext = dbContext;
-            //this.userManager = userManager;
             this.productService = productService;
         }
 
@@ -32,7 +30,7 @@ namespace BarbaKidsShop.Web.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Add()
         {
             var model = new ProductViewModel();
@@ -49,7 +47,7 @@ namespace BarbaKidsShop.Web.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Add(ProductViewModel model)
         {
             if (!ModelState.IsValid)
@@ -63,7 +61,7 @@ namespace BarbaKidsShop.Web.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
             var product = await productService.GetEditProductModelByIdAsync(id);
@@ -77,7 +75,7 @@ namespace BarbaKidsShop.Web.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Edit(ProductEditViewModel model)
         {
             if (!ModelState.IsValid)
@@ -89,7 +87,7 @@ namespace BarbaKidsShop.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var product = await productService.GetProductDetailsByIdAsync(id); 
@@ -103,6 +101,7 @@ namespace BarbaKidsShop.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             var product = await productService.GetProductDeleteByIdAsync(id);
@@ -116,6 +115,7 @@ namespace BarbaKidsShop.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Delete(ProductDeleteViewModel model)
         {
             if (!ModelState.IsValid)

@@ -27,6 +27,11 @@ namespace BarbaKidsShop.Web
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+            });
+
             builder.Services.AddScoped<IRepository<Product, int>, BaseRepository<Product, int>>();
             builder.Services.AddScoped<IRepository<Category, int>, BaseRepository<Category, int>>();
             builder.Services.AddScoped<IRepository<Order, int>, BaseRepository<Order, int>>();
@@ -34,6 +39,7 @@ namespace BarbaKidsShop.Web
             builder.Services.AddScoped<IRepository<ShippingDetail, int>, BaseRepository<ShippingDetail, int>>();
 
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<ICartService, CartService>();
 
             var app = builder.Build();
 

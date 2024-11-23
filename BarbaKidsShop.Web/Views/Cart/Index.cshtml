@@ -1,0 +1,93 @@
+﻿@using BarbaKidsShop.Web.ViewModels
+
+@model IEnumerable<CartViewModel>
+
+<div class="container py-5">
+    <h2 class="text-center mb-4 fw-bold text-secondary">Shopping Cart</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5">
+            <h5 class="text-muted">Your cart is empty.</h5>
+            <a href="@Url.Action("Index", "Product")" class="btn btn-primary mt-3">Continue Shopping</a>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card shadow border-0 mb-4">
+                    <div class="card-body">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-secondary">
+                                <tr>
+                                    <th scope="col">Product</th>
+                                    <th scope="col" class="text-center">Price</th>
+                                    <th scope="col" class="text-center">Quantity</th>
+                                    <th scope="col" class="text-center">Total</th>
+                                    <th scope="col" class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="@item.ImageUrl" alt="@item.ProductName" class="rounded me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                                <div>
+                                                    <h6 class="fw-bold">@item.ProductName</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <span>@item.Price.ToString("C")</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="d-inline-flex">
+                                                <button class="btn btn-outline-secondary btn-sm">-</button>
+                                                <input type="text" class="form-control form-control-sm text-center mx-2" value="@item.Quantity" style="width: 50px;">
+                                                <button class="btn btn-outline-secondary btn-sm">+</button>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <span>@item.TotalPrice.ToString("C")</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash-alt"></i> Remove
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card shadow border-0">
+                    <div class="card-body">
+                        <h5 class="fw-bold mb-4">Order Summary</h5>
+                        <ul class="list-group mb-4">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Subtotal:
+                                <span class="fw-bold">@Model.Sum(x => x.TotalPrice).ToString("C")</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Shipping:
+                                <span class="fw-bold">Free</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Total:
+                                <span class="fw-bold">@Model.Sum(x => x.TotalPrice).ToString("C")</span>
+                            </li>
+                        </ul>
+                        <a href="@Url.Action("Checkout", "Order")" class="btn btn-success w-100">Proceed to Checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

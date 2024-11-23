@@ -45,11 +45,16 @@
                                         <i class="fas fa-list"></i> Product List
                                     </a>
                                 </li>
-                                @if (User.Identity.IsAuthenticated == false) // Make it work when user is Authenticated
+                                @if (User.Identity.IsAuthenticated == true)
                                 {
                                     <li><a class="dropdown-item" asp-controller="Product" asp-action="Add">Add Product</a></li>
                                 }
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-semibold hover-link" asp-area="" asp-controller="Cart" asp-action="Index">
+                                <i class="bi bi-cart-fill"></i> Cart
+                            </a>
                         </li>
                     </ul>
 
