@@ -1,10 +1,13 @@
-﻿using BarbaKidsShop.Data;
+﻿using System.Security.Claims;
+using BarbaKidsShop.Data;
 using BarbaKidsShop.Data.Models;
+using BarbaKidsShop.Services.Data;
 using BarbaKidsShop.Services.Data.Interfaces;
 using BarbaKidsShop.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 
 namespace BarbaKidsShop.Web.Controllers
@@ -37,6 +40,10 @@ namespace BarbaKidsShop.Web.Controllers
             return View(cartItems);
         }
 
-
+        [HttpPost]
+        public async Task<IActionResult> AddToCart(int productId, int quantity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

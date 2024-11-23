@@ -12,9 +12,6 @@ namespace BarbaKidsShop.Common
         {
             public const int FullNameMinLength = 1;
             public const int FullNameMaxLength = 100;
-
-            public const int AddressMinLength = 1;
-            public const int AddressMaxLength = 255;
         }
 
         public static class ProductConstants
@@ -43,7 +40,7 @@ namespace BarbaKidsShop.Common
             public const int CityMinLength = 1;
             public const int CityMaxLength = 120;
 
-            public const int PostalCoderMinLength = 1;
+            public const int PostalCodeMinLength = 1;
             public const int PostalCodeMaxLength = 20;
 
             public const int CountryMinLength = 1;

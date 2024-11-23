@@ -33,7 +33,7 @@
                         <p class="card-text text-muted">Price: @product.Price.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("bg-BG"))</p>
 
                         <div class="mt-auto">
-                            @if (User?.Identity?.IsAuthenticated == true)
+                            @if (User?.Identity?.IsAuthenticated == false)
                             {
                                 <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning w-100 mb-2">Edit</a>
                                 <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger w-100">Delete</a>
@@ -41,11 +41,13 @@
                             else
                             {
                                 <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="btn btn-info w-100 mb-2">Details</a>
-                                @* <form asp-controller="Product" asp-action="AddToCart" method="post" class="w-50">
-                        <input type="hidden" name="id" value="@product.Id" />
-                        <button type="submit" class="btn btn-success w-50">Buy</button>
-                        </form> *@
-                                <a asp-controller="Product" asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-success w-100">Buy</a>
+                                <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                    <input type="hidden" name="productId" value="@product.Id" />
+                                    <div class="input-group">
+                                        <input type="number" name="quantity" value="1" min="1" class="form-control" />
+                                        <button type="submit" class="btn btn-success">Buy</button>
+                                    </div>
+                                </form>
                             }
                         </div>
                     </div>

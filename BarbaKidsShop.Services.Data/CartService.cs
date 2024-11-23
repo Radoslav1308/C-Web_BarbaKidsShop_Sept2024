@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using BarbaKidsShop.Data.Models;
@@ -24,16 +25,6 @@ namespace BarbaKidsShop.Services.Data
             this.orderDetailRepository = orderDetailRepository;
             this.productRepository = productRepository;
         }
-        
-        public Task AddToCartAsync(CartViewModel model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task ClearCartAsync()
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<IEnumerable<CartViewModel>> IndexGetAllProductsForUserInCartAsync(string userId)
         {
@@ -52,6 +43,15 @@ namespace BarbaKidsShop.Services.Data
                 .ToListAsync();
 
             return cartItems;
+        }
+
+        public async Task AddToCartAsync(string userId, int productId, int quantity)
+        {
+           
+        }
+        public Task ClearCartAsync()
+        {
+            throw new NotImplementedException();
         }
 
         public Task RemoveFromCartAsync(int productId)

@@ -11,7 +11,7 @@ namespace BarbaKidsShop.Services.Data.Interfaces
     public interface ICartService
     {
         Task<IEnumerable<CartViewModel>> IndexGetAllProductsForUserInCartAsync(string userId);
-        Task AddToCartAsync(CartViewModel model);
+        Task AddToCartAsync(string userId, int productId, int quantity);
         Task RemoveFromCartAsync(int productId);
         Task UpdateCartItemAsync(CartViewModel model);
         Task ClearCartAsync();
