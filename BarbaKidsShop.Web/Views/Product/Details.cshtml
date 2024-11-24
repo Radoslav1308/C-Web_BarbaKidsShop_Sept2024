@@ -1,44 +1,4 @@
-﻿@* @using BarbaKidsShop.Web.ViewModels
-
-@model ProductDetailsViewModel
-
-@{
-    ViewData["Title"] = "Product Details";
-}
-
-<div class="container">
-    <h2>@ViewData["Title"]</h2>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-3">Product Name</dt>
-        <dd class="col-sm-9">@Model.ProductName</dd>
-
-        <dt class="col-sm-3">Price</dt>
-        <dd class="col-sm-9">@Model.Price лв.</dd>
-
-        <dt class="col-sm-3">Description</dt>
-        <dd class="col-sm-9">@Model.Description</dd>
-
-        <dt class="col-sm-3">Image</dt>
-        <dd class="col-sm-9">
-            @if (!string.IsNullOrEmpty(Model.ImageUrl))
-            {
-                <img src="@Model.ImageUrl" alt="Product Image" class="img-fluid" />
-            }
-            else
-            {
-                <span>No image available</span>
-            }
-        </dd>
-
-        <dt class="col-sm-3">Category</dt>
-        <dd class="col-sm-9">@Model.CategoryName</dd>
-    </dl>
-
-    <a href="@Url.Action("Index", "Product")" class="btn btn-secondary">Back to List</a>
-</div> *@
-
-@using BarbaKidsShop.Web.ViewModels
+﻿@using BarbaKidsShop.Web.ViewModels
 
 @model ProductDetailsViewModel
 

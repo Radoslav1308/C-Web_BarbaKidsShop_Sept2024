@@ -24,7 +24,7 @@ namespace BarbaKidsShop.Web.Controllers
         [HttpGet]
         public IActionResult ShippingDetails()
         {
-            return View(new ShippingDetailViewModel());
+            return View();
         }
 
         [HttpPost]

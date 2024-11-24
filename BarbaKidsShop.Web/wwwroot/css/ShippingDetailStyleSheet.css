@@ -1,0 +1,22 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap');
+
+.btn-hover:hover {
+    background-color: #0066cc !important;
+    color: #ffffff !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-success.btn-hover:hover {
+    background-color: #28a745 !important;
+    border-color: #1e7e34 !important;
+}
+
+.form-control:focus {
+    border-color: #0066cc !important;
+    box-shadow: 0 0 5px rgba(0, 102, 204, 0.5);
+}
+
+.form-label {
+    color: #333333;
+}
