@@ -47,7 +47,48 @@ namespace BarbaKidsShop.Services.Data
 
         public async Task AddToCartAsync(string userId, int productId, int quantity)
         {
-           
+            //var product = await this.productRepository.GetByIdAsync(productId);
+            //if (product == null)
+            //{
+            //    throw new ArgumentException("Product not found.");
+            //}
+
+            //var order = await this.orderRepository
+            //    .GetAllAttached()
+            //    .FirstOrDefaultAsync(o => o.UserId == userId && o.ShippingDetailId == 0);
+
+            //if (order == null)
+            //{
+            //    order = new Order
+            //    {
+            //        UserId = userId,
+            //        OrderDate = DateTime.UtcNow,
+            //        ShippingDetailId = 1
+            //    };
+
+            //    await this.orderRepository.AddAsync(order);
+            //}
+
+            //var orderDetail = await this.orderDetailRepository
+            //    .GetAllAttached()
+            //    .FirstOrDefaultAsync(od => od.OrderId == order.OrderId && od.ProductId == productId);
+
+            //if (orderDetail != null)
+            //{
+            //    orderDetail.Quantity += quantity;
+            //}
+            //else
+            //{
+            //    orderDetail = new OrderDetail
+            //    {
+            //        OrderId = order.OrderId,
+            //        ProductId = productId,
+            //        Quantity = quantity,
+            //        Price = product.Price
+            //    };
+
+            //    await this.orderDetailRepository.AddAsync(orderDetail);
+            //}
         }
         public Task ClearCartAsync()
         {

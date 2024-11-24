@@ -26,7 +26,7 @@ namespace BarbaKidsShop.Data.Models
         public string City { get; set; } = null!;
 
         [Required]
-        [MinLength(PostalCoderMinLength)]
+        [MinLength(PostalCodeMinLength)]
         [MaxLength(PostalCodeMaxLength)]
         public string PostalCode { get; set; } = null!;
 

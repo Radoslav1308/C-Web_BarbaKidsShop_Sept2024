@@ -26,7 +26,6 @@ namespace BarbaKidsShop.Data.Repository
         {
             this.dbSet.Add(item);
             this.dbContext.SaveChanges();
-
         }
 
         public async Task AddAsync(TType item)

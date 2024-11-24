@@ -21,10 +21,10 @@ namespace BarbaKidsShop.Data.Models
 
         public DateTime OrderDate { get; set; }
        
-        public int ShippingDetailId { get; set; }
+        public int? ShippingDetailId { get; set; }
 
         [ForeignKey(nameof(ShippingDetailId))]
-        public ShippingDetail ShippingDetail { get; set; } = null!;
+        public ShippingDetail? ShippingDetail { get; set; }
 
 
         public ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
