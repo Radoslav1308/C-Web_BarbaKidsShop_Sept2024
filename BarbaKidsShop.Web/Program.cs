@@ -40,6 +40,7 @@ namespace BarbaKidsShop.Web
 
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<ICartService, CartService>();
+            builder.Services.AddScoped<IShippingDetailService, ShippingDetailService>();
 
             var app = builder.Build();
 
