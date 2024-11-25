@@ -40,19 +40,19 @@ namespace BarbaKidsShop.Web.Controllers
             return View(cartItems);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> AddToCart(int productId)
-        //{
-        //    var currentUserId = userManager.GetUserId(User);
+        [HttpPost]
+        public async Task<IActionResult> AddToCart(int productId, int quantity)
+        {
+            var currentUserId = userManager.GetUserId(User);
 
-        //    if (currentUserId == null)
-        //    {
-        //        throw new InvalidOperationException("Invalid user.");
-        //    }
+            if (currentUserId == null)
+            {
+                throw new InvalidOperationException("Invalid user.");
+            }
 
-        //    await this.cartService.AddToCartAsync(currentUserId, productId);
+            await this.cartService.AddToCartAsync(currentUserId, productId, quantity);
 
-        //    return RedirectToAction(nameof(Index));
-        //}
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

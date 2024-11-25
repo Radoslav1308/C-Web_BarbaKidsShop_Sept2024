@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace BarbaKidsShop.Data.Models
 {
-    public class OrderDetail
+    public class ProductOrder
     {
         [Key]
-        public int OrderDetailId { get; set; }
+        public int ProductOrderId { get; set; }
 
         [Required]
         public int OrderId { get; set; }
@@ -27,9 +27,5 @@ namespace BarbaKidsShop.Data.Models
 
         [Required]
         public int Quantity { get; set; }
-
-        [Required] 
-        [Column(TypeName = "decimal(10, 2)")]
-        public decimal Price { get; set; }
     }
 }

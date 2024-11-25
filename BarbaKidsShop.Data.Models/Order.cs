@@ -26,7 +26,11 @@ namespace BarbaKidsShop.Data.Models
         [ForeignKey(nameof(ShippingDetailId))]
         public ShippingDetail? ShippingDetail { get; set; }
 
+        [Required]
+        [Column(TypeName = "decimal(10, 2)")]
+        public decimal TotalPrice { get; set; }
 
-        public ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+
+        public ICollection<ProductOrder> ProductOrders { get; set; } = new List<ProductOrder>();
     }
 }

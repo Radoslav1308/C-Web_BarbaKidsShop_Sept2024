@@ -41,10 +41,12 @@
                             else
                             {
                                 <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="btn btn-info w-100 mb-2">Details</a>
-                                <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-flex align-items-center">
                                     <input type="hidden" name="productId" value="@product.Id" />
                                     <div class="input-group">
-                                        <button type="submit" class="btn btn-success w-100 mb-2">Buy</button>
+                                        <input type="number" name="quantity" class="form-control text-center me-2" value="1" min="1" style="width: 80px;" />
+
+                                        <button type="submit" class="btn btn-success">Buy</button>
                                     </div>
                                 </form>
                             }

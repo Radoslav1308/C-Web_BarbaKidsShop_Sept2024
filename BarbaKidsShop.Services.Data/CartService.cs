@@ -16,19 +16,19 @@ namespace BarbaKidsShop.Services.Data
     public class CartService : ICartService
     {
         private IRepository<Order, int> orderRepository;
-        private IRepository<OrderDetail, int> orderDetailRepository;
+        private IRepository<ProductOrder, int> productOrderRepository;
         private IRepository<Product, int> productRepository;
 
-        public CartService(IRepository<Order, int> orderRepository, IRepository<OrderDetail, int> orderDetailRepository, IRepository<Product, int> productRepository)
+        public CartService(IRepository<Order, int> orderRepository, IRepository<ProductOrder, int> productOrderRepository, IRepository<Product, int> productRepository)
         {
             this.orderRepository = orderRepository;
-            this.orderDetailRepository = orderDetailRepository;
+            this.productOrderRepository = productOrderRepository;
             this.productRepository = productRepository;
         }
 
         public async Task<IEnumerable<CartViewModel>> IndexGetAllProductsForUserInCartAsync(string userId)
         {
-            var cartItems = await this.orderDetailRepository
+            var cartItems = await this.productOrderRepository
                 .GetAllAttached()
                 .Where(od => od.Order.UserId == userId)
                 .Where(od => !od.Product.IsDeleted)
@@ -47,48 +47,48 @@ namespace BarbaKidsShop.Services.Data
 
         public async Task AddToCartAsync(string userId, int productId, int quantity)
         {
-            //var product = await this.productRepository.GetByIdAsync(productId);
-            //if (product == null)
-            //{
-            //    throw new ArgumentException("Product not found.");
-            //}
+            var product = await this.productRepository.GetByIdAsync(productId);
+            if (product == null)
+            {
+                throw new ArgumentException("Product not found.");
+            }
 
-            //var order = await this.orderRepository
-            //    .GetAllAttached()
-            //    .FirstOrDefaultAsync(o => o.UserId == userId && o.ShippingDetailId == 0);
+            var order = await this.orderRepository
+                .GetAllAttached()
+                .FirstOrDefaultAsync(o => o.UserId == userId);
 
-            //if (order == null)
-            //{
-            //    order = new Order
-            //    {
-            //        UserId = userId,
-            //        OrderDate = DateTime.UtcNow,
-            //        ShippingDetailId = 1
-            //    };
+            if (order == null)
+            {
+                order = new Order
+                {
+                    UserId = userId,
+                    OrderDate = DateTime.UtcNow
+                };
 
-            //    await this.orderRepository.AddAsync(order);
-            //}
+                await this.orderRepository.AddAsync(order);
+            }
 
-            //var orderDetail = await this.orderDetailRepository
-            //    .GetAllAttached()
-            //    .FirstOrDefaultAsync(od => od.OrderId == order.OrderId && od.ProductId == productId);
+            var productOrder = await this.productOrderRepository
+                .GetAllAttached()
+                .FirstOrDefaultAsync(od => od.OrderId == order.OrderId && od.ProductId == productId);
 
-            //if (orderDetail != null)
-            //{
-            //    orderDetail.Quantity += quantity;
-            //}
-            //else
-            //{
-            //    orderDetail = new OrderDetail
-            //    {
-            //        OrderId = order.OrderId,
-            //        ProductId = productId,
-            //        Quantity = quantity,
-            //        Price = product.Price
-            //    };
+            if (productOrder != null)
+            {
+                productOrder.Quantity += quantity;
+            }
+            else
+            {
+                productOrder = new ProductOrder
+                {
+                    OrderId = order.OrderId,
+                    ProductId = productId,
+                    Quantity = quantity
+                };
 
-            //    await this.orderDetailRepository.AddAsync(orderDetail);
-            //}
+                order.TotalPrice = product.Price * quantity;
+
+                await this.productOrderRepository.AddAsync(productOrder);
+            }
         }
         public Task ClearCartAsync()
         {
@@ -100,7 +100,7 @@ namespace BarbaKidsShop.Services.Data
             throw new NotImplementedException();
         }
 
-        public Task UpdateCartItemAsync(CartViewModel model)
+        public Task UpdateItemQuantityAsync(CartUpdateQuantityViewModel model)
         {
             throw new NotImplementedException();
         }

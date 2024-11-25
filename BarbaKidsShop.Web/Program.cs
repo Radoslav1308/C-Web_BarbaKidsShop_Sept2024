@@ -35,7 +35,7 @@ namespace BarbaKidsShop.Web
             builder.Services.AddScoped<IRepository<Product, int>, BaseRepository<Product, int>>();
             builder.Services.AddScoped<IRepository<Category, int>, BaseRepository<Category, int>>();
             builder.Services.AddScoped<IRepository<Order, int>, BaseRepository<Order, int>>();
-            builder.Services.AddScoped<IRepository<OrderDetail, int>, BaseRepository<OrderDetail, int>>();
+            builder.Services.AddScoped<IRepository<ProductOrder, int>, BaseRepository<ProductOrder, int>>();
             builder.Services.AddScoped<IRepository<ShippingDetail, int>, BaseRepository<ShippingDetail, int>>();
 
             builder.Services.AddScoped<IProductService, ProductService>();

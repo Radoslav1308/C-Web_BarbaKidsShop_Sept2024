@@ -44,6 +44,6 @@ namespace BarbaKidsShop.Data.Models
 
         public bool IsDeleted { get; set; } = false;
 
-        public ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+        public ICollection<ProductOrder> ProductOrders { get; set; } = new List<ProductOrder>();
     }
 }

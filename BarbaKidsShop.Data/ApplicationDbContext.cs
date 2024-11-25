@@ -15,7 +15,7 @@ namespace BarbaKidsShop.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<ProductOrder> ProductOrders { get; set; }
         public DbSet<ShippingDetail> ShippingDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -29,12 +29,12 @@ namespace BarbaKidsShop.Data
            .HasForeignKey(p => p.CategoryId);
 
             builder.Entity<Order>()
-                .HasMany(o => o.OrderDetails)
+                .HasMany(o => o.ProductOrders)
                 .WithOne(od => od.Order)
                 .HasForeignKey(od => od.OrderId);
 
             builder.Entity<Product>()
-                .HasMany(p => p.OrderDetails)
+                .HasMany(p => p.ProductOrders)
                 .WithOne(od => od.Product)
                 .HasForeignKey(od => od.ProductId);
 
