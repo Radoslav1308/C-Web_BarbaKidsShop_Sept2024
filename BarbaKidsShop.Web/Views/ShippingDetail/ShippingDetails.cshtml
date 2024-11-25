@@ -39,8 +39,12 @@
 
                 <div class="d-flex justify-content-between align-items-center">
                     <a asp-action="Index" asp-controller="Cart" class="btn btn-secondary px-4 py-2 shadow-sm btn-hover">Back to Cart</a>
-                    <button type="submit" class="btn btn-success px-4 py-2 shadow-sm btn-hover">Save Shipping Details</button>
                 </div>
+            </form>
+            <form asp-action="SaveAndCheckout" method="post" class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-success px-4 py-2 shadow-sm btn-hover">
+                    Save Shipping Details & Finish Order
+                </button>
             </form>
         </div>
     </div>

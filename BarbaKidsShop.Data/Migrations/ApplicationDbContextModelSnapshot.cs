@@ -102,7 +102,7 @@ namespace BarbaKidsShop.Data.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -161,7 +161,7 @@ namespace BarbaKidsShop.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("BarbaKidsShop.Data.Models.Product", b =>
@@ -201,7 +201,7 @@ namespace BarbaKidsShop.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("BarbaKidsShop.Data.Models.ProductOrder", b =>
@@ -227,7 +227,7 @@ namespace BarbaKidsShop.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductOrders");
+                    b.ToTable("ProductOrders", (string)null);
                 });
 
             modelBuilder.Entity("BarbaKidsShop.Data.Models.ShippingDetail", b =>
@@ -263,7 +263,7 @@ namespace BarbaKidsShop.Data.Migrations
 
                     b.HasKey("ShippingDetailId");
 
-                    b.ToTable("ShippingDetails");
+                    b.ToTable("ShippingDetails", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

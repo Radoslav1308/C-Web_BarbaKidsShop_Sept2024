@@ -28,5 +28,7 @@ namespace BarbaKidsShop.Web.ViewModels
         [Required]
         [Range(MinQuantity, MaxQuantity)]
         public int Quantity { get; set; }
+
+        public decimal TotalPrice => Price * Quantity;
     }
 }

@@ -99,10 +99,5 @@ namespace BarbaKidsShop.Services.Data
         {
             throw new NotImplementedException();
         }
-
-        public Task UpdateItemQuantityAsync(CartUpdateQuantityViewModel model)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

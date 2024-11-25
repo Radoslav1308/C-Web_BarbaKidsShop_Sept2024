@@ -3,7 +3,6 @@
 @model IEnumerable<CartViewModel>
 
 <link rel="stylesheet" href="~/css/CartIndexStyleSheet.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/js/site.js" asp-append-version="true" />
 
 <div class="container py-5">
     <h2 class="text-center mb-4 fw-bold text-secondary">Shopping Cart</h2>
@@ -12,7 +11,7 @@
     {
         <div class="text-center py-5">
             <h5 class="text-muted">Your cart is empty.</h5>
-            <a href="@Url.Action("Index", "Product")" class="btn btn-primary mt-3">Continue Shopping</a>           
+            <a href="@Url.Action("Index", "Product")" class="btn btn-primary mt-3">Continue Shopping</a>
         </div>
     }
     else
@@ -46,25 +45,9 @@
                                         <td class="text-center">
                                             <span>@item.Price.ToString("C")</span>
                                         </td>
-                                        @* <td class="text-center">
-                                            <div class="d-inline-flex">
-                                                <button class="btn btn-outline-secondary btn-sm">-</button>
-                                                <input type="text" class="form-control form-control-sm text-center mx-2" value="@item.Quantity" style="width: 50px;">
-                                                <button class="btn btn-outline-secondary btn-sm">+</button>
-                                            </div>
-                                        </td> *@
                                         <td class="text-center">
                                             <div class="d-inline-flex">
-                                                <!-- Decrease Quantity Button -->
-                                                <button type="button" class="btn btn-outline-secondary btn-sm quantity-decrease" data-product-id="@item.ProductId">-</button>
-
-                                                <!-- Quantity Input -->
-                                                <input type="number" class="form-control form-control-sm text-center mx-2 quantity-input"
-                                                       value="@item.Quantity" min="1" style="width: 50px;"
-                                                       data-product-id="@item.ProductId" />
-
-                                                <!-- Increase Quantity Button -->
-                                                <button type="button" class="btn btn-outline-secondary btn-sm quantity-increase" data-product-id="@item.ProductId">+</button>
+                                                <span class="form-control form-control-sm text-center mx-2 bg-light" style="width: 50px;">@item.Quantity</span>
                                             </div>
                                         </td>
                                         <td class="text-center">
@@ -101,8 +84,8 @@
                                 <span class="fw-bold">@Model.Sum(x => x.TotalPrice).ToString("C")</span>
                             </li>
                         </ul>
-                        <a asp-action="ShippingDetails" asp-controller="ShippingDetail" class="btn btn-primary shadow-sm btn-hover mt-3">Proceed to Shipping Details</a>
-                        <a href="@Url.Action("Checkout", "Order")" class="btn btn-success w-100">Proceed to Checkout</a>
+
+                        <a asp-action="ShippingDetails" asp-controller="ShippingDetail" class="btn btn-success w-100">Add Shipping Details</a>
                     </div>
                 </div>
             </div>
