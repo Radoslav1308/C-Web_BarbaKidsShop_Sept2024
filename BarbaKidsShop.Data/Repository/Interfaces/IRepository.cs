@@ -34,5 +34,7 @@ namespace BarbaKidsShop.Data.Repository.Interfaces
         TType FirstOrDefault(Func<TType, bool> predicate);
 
         Task<TType> FirstOrDefaultAsync(Expression<Func<TType, bool>> predicate);
+
+        Task RemoveAsync(TType item);
     }
 }

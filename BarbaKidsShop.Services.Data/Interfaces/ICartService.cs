@@ -12,7 +12,7 @@ namespace BarbaKidsShop.Services.Data.Interfaces
     {
         Task<IEnumerable<CartViewModel>> IndexGetAllProductsForUserInCartAsync(string userId);
         Task AddToCartAsync(string userId, int productId, int quantity);
-        Task RemoveFromCartAsync(int productId);
+        Task RemoveFromCartAsync(int productId, string userId);
         Task ClearCartAsync();
     }
 }

@@ -54,9 +54,12 @@
                                             <span>@item.TotalPrice.ToString("C")</span>
                                         </td>
                                         <td class="text-center">
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash-alt"></i> Remove
-                                            </button>
+                                            <form asp-controller="Cart" asp-action="RemoveFromCart" method="post" style="display:inline;">
+                                                <input type="hidden" name="productId" value="@item.Id" />
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash-alt"></i> Remove
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 }

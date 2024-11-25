@@ -54,5 +54,20 @@ namespace BarbaKidsShop.Web.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveFromCart(int productId)
+        {
+            var currentUserId = userManager.GetUserId(User);
+
+            if (currentUserId == null)
+            {
+                throw new InvalidOperationException("Invalid user.");
+            }
+
+            await this.cartService.RemoveFromCartAsync(productId, currentUserId);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

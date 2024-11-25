@@ -97,6 +97,12 @@ namespace BarbaKidsShop.Data.Repository
             return entity;
         }
 
+        public async Task RemoveAsync(TType item)
+        {
+            this.dbSet.Remove(item);
+            await this.dbContext.SaveChangesAsync();
+        }
+
         public bool Update(TType item)
         {
             try
