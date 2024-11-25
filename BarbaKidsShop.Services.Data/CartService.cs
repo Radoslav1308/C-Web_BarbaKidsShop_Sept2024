@@ -90,9 +90,28 @@ namespace BarbaKidsShop.Services.Data
                 await this.productOrderRepository.AddAsync(productOrder);
             }
         }
-        public Task ClearCartAsync()
+        public async Task ClearCartAsync(string userId)
         {
-            throw new NotImplementedException();
+            var order = await this.orderRepository
+              .GetAllAttached()
+              .FirstOrDefaultAsync(o => o.UserId == userId);
+
+            if (order == null)
+            {
+                throw new ArgumentException("Order not found.");
+            }
+            else
+            {
+                var relatedEntities = await this.productOrderRepository
+                .GetAllAttached()
+                .Where(po => po.OrderId == order.OrderId)
+                .ToListAsync();
+
+                foreach (var product in relatedEntities)
+                {
+                    await this.productOrderRepository.RemoveAsync(product);
+                }
+            }
         }
 
         public async Task RemoveFromCartAsync(int productId, string userId)

@@ -63,6 +63,15 @@
                                         </td>
                                     </tr>
                                 }
+                                <tr>
+                                    <td>
+                                        <form asp-controller="Cart" asp-action="ClearCart" method="post" style="display:inline;">
+                                            <button type="submit" class="btn btn-warning btn-sm">
+                                                <i class="fas fa-trash-alt"></i> Clear Cart
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

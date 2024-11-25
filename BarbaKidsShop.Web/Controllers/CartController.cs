@@ -29,13 +29,8 @@ namespace BarbaKidsShop.Web.Controllers
         {
             var currentUserId = userManager.GetUserId(User);
 
-            if (currentUserId == null)
-            {
-                throw new InvalidOperationException("Invalid user.");
-            }
-
             IEnumerable<CartViewModel> cartItems =
-                await this.cartService.IndexGetAllProductsForUserInCartAsync(currentUserId);
+                await this.cartService.IndexGetAllProductsForUserInCartAsync(currentUserId!);
 
             return View(cartItems);
         }
@@ -52,7 +47,7 @@ namespace BarbaKidsShop.Web.Controllers
 
             await this.cartService.AddToCartAsync(currentUserId, productId, quantity);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Product");
         }
 
         [HttpPost]
@@ -66,6 +61,21 @@ namespace BarbaKidsShop.Web.Controllers
             }
 
             await this.cartService.RemoveFromCartAsync(productId, currentUserId);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ClearCart()
+        {
+            var currentUserId = userManager.GetUserId(User);
+
+            if (currentUserId == null)
+            {
+                throw new InvalidOperationException("Invalid user.");
+            }
+
+            await this.cartService.ClearCartAsync(currentUserId);
 
             return RedirectToAction(nameof(Index));
         }
