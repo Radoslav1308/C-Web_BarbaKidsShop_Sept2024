@@ -56,6 +56,19 @@
                                 <i class="bi bi-cart-fill"></i> Cart
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <form class="d-flex" asp-controller="Search" asp-action="Search" method="get">
+                                <input class="form-control me-2"
+                                       type="search"
+                                       name="productName"
+                                       placeholder="Search for product"
+                                       aria-label="Search for product"
+                                       required>
+                                <button class="btn btn-outline-dark fw-semibold" type="submit">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </form>
+                        </li>
                     </ul>
 
                     <partial name="_LoginPartial" />

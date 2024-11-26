@@ -1,0 +1,36 @@
+﻿@using BarbaKidsShop.Web.ViewModels
+@model IEnumerable<ProductIndexViewModel>
+
+<link rel="stylesheet" href="~/css/SearchStyleSheet.css" asp-append-version="true" />
+
+<div class="container py-5">
+    <h2 class="text-secondary fw-bold text-center mb-4">Search Results</h2>
+    <hr class="mb-5" />
+
+    @if (!Model.Any())
+    {
+        <p class="text-muted text-center">No products found. Try searching for something else!</p>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var product in Model)
+            {
+                <div class="col-md-4 col-sm-6 col-lg-3">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="position-relative overflow-hidden">
+                            <img src="@product.ImageUrl" class="card-img-top" alt="@product.ProductName" />
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-truncate">@product.ProductName</h5>
+                            <p class="card-text text-muted">Price: @product.Price.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("bg-BG"))</p>
+                            <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="btn btn-outline-dark">
+                                <i class="bi bi-info-circle"></i> Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

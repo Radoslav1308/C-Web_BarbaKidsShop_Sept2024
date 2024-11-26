@@ -25,6 +25,7 @@ namespace BarbaKidsShop.Web.Controllers
             this.cartService = cartService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var currentUserId = userManager.GetUserId(User);

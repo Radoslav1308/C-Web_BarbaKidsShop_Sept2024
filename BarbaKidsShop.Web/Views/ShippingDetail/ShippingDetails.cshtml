@@ -36,15 +36,14 @@
                     <input asp-for="Country" class="form-control border-primary shadow-sm" />
                     <span asp-validation-for="Country" class="text-danger"></span>
                 </div>
-
-                <div class="d-flex justify-content-between align-items-center">
-                    <a asp-action="Index" asp-controller="Cart" class="btn btn-secondary px-4 py-2 shadow-sm btn-hover">Back to Cart</a>
+                <div class="d-flex flex-column flex-md-row justify-content-between">
+                    <a asp-action="Index" asp-controller="Cart" class="btn btn-secondary px-4 py-2 shadow-sm btn-hover mb-3 mb-md-0">Back to Cart</a>
+                    <form asp-action="SaveAndCheckout" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-success px-4 py-2 shadow-sm btn-hover">
+                            Save Shipping Details & Finish Order
+                        </button>
+                    </form>
                 </div>
-            </form>
-            <form asp-action="SaveAndCheckout" method="post" class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-success px-4 py-2 shadow-sm btn-hover">
-                    Save Shipping Details & Finish Order
-                </button>
             </form>
         </div>
     </div>
