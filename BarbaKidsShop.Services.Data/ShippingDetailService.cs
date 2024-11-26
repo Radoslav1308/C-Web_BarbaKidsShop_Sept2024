@@ -15,35 +15,50 @@ namespace BarbaKidsShop.Services.Data
     {
         private IRepository<ShippingDetail, int> shippingDetailRepository;
         private IRepository<Order, int> orderRepository;
+        private IRepository<ProductOrder, int> productOrderRepository;
 
-        public ShippingDetailService(IRepository<ShippingDetail, int> shippingDetailRepository, IRepository<Order, int> orderRepository)
+        public ShippingDetailService(IRepository<ShippingDetail, int> shippingDetailRepository, IRepository<Order, int> orderRepository, IRepository<ProductOrder, int> productOrderRepository)
         {
             this.shippingDetailRepository = shippingDetailRepository;
             this.orderRepository = orderRepository;
+            this.productOrderRepository = productOrderRepository;
         }
 
         public async Task CreateShippingDetailAsync(ShippingDetailViewModel model, string userId)
         {
             var order = await this.orderRepository
-            .FirstOrDefaultAsync(o => o.UserId == userId && o.ShippingDetailId == null);
-
-            if (order == null)
-            {
-                throw new InvalidOperationException("No open order found for the user.");
-            }
+            .FirstOrDefaultAsync(o => o.UserId == userId);
 
             var shippingDetail = new ShippingDetail
             {
                 Address = model.Address,
                 City = model.City,
                 PostalCode = model.PostalCode,
-                Country = model.Country
+                Country = model.Country,
+                OrderId = order.OrderId
             };
+
+            order.ShippingDetail = shippingDetail;
+            
+            if (order.ShippingDetail == null)
+            {
+                throw new InvalidOperationException("No open order found for the user.");
+            }
 
             await this.shippingDetailRepository.AddAsync(shippingDetail);
 
             order.ShippingDetailId = shippingDetail.ShippingDetailId;
             await this.orderRepository.UpdateAsync(order);
+
+            var relatedEntities = await this.productOrderRepository
+                .GetAllAttached()
+                .Where(po => po.OrderId == order.OrderId)
+                .ToListAsync();
+
+            foreach (var product in relatedEntities)
+            {
+                await this.productOrderRepository.RemoveAsync(product);
+            }            
         }
     }
 }

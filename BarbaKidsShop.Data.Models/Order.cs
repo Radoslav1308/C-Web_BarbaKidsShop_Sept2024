@@ -30,7 +30,6 @@ namespace BarbaKidsShop.Data.Models
         [Column(TypeName = "decimal(10, 2)")]
         public decimal TotalPrice { get; set; }
 
-
         public ICollection<ProductOrder> ProductOrders { get; set; } = new List<ProductOrder>();
     }
 }

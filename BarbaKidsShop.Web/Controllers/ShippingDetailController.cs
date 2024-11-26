@@ -45,7 +45,7 @@ namespace BarbaKidsShop.Web.Controllers
             
             await this.shippingDetailService.CreateShippingDetailAsync(model, currentUserId);
             
-            return RedirectToAction("Checkout", "Order");
+            return RedirectToAction("Index", "Cart");
         }
     }
 }

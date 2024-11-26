@@ -75,6 +75,9 @@ namespace BarbaKidsShop.Services.Data
             if (productOrder != null)
             {
                 productOrder.Quantity += quantity;
+
+                order.TotalPrice = product.Price * productOrder.Quantity;
+                await this.productOrderRepository.UpdateAsync(productOrder);
             }
             else
             {
@@ -85,10 +88,10 @@ namespace BarbaKidsShop.Services.Data
                     Quantity = quantity
                 };
 
-                order.TotalPrice = product.Price * quantity;
+                order.TotalPrice = product.Price * productOrder.Quantity;
 
                 await this.productOrderRepository.AddAsync(productOrder);
-            }
+            }           
         }
         public async Task ClearCartAsync(string userId)
         {

@@ -97,7 +97,15 @@
                             </li>
                         </ul>
 
-                        <a asp-action="ShippingDetails" asp-controller="ShippingDetail" class="btn btn-success w-100">Add Shipping Details</a>
+                        <div class="form-group mb-4">
+                            <label for="PaymentMethod" class="form-label fw-bold">Payment Method</label>
+                            <select id="PaymentMethod" class="form-control border-primary shadow-sm">
+                                <option value="Cash">Cash</option>
+                                <option value="Card">Card</option>
+                            </select>
+                        </div>
+
+                        <a asp-action="ShippingDetails" asp-controller="ShippingDetail" class="btn btn-success w-100">Finish Order</a>
                     </div>
                 </div>
             </div>
