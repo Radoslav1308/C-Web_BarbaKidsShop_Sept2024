@@ -1,4 +1,9 @@
-﻿@using BarbaKidsShop.Web.ViewModels
+﻿@using BarbaKidsShop.Data.Models
+@using BarbaKidsShop.Web.ViewModels
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 @model IEnumerable<ProductIndexViewModel>
 
@@ -33,7 +38,7 @@
                         <p class="card-text text-muted">Price: @product.Price.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("bg-BG"))</p>
 
                         <div class="mt-auto">
-                            @if (User?.Identity?.IsAuthenticated == false)
+                            @if (User.IsInRole("Admin"))
                             {
                                 <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning w-100 mb-2">Edit</a>
                                 <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger w-100">Delete</a>

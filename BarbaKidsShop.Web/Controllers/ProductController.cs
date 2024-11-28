@@ -30,7 +30,7 @@ namespace BarbaKidsShop.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Add()
         {
             var model = await this.productService.GetAddProductModelByIdAsync();
@@ -39,7 +39,7 @@ namespace BarbaKidsShop.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Add(ProductViewModel model)
         {
             if (!ModelState.IsValid)
@@ -53,7 +53,7 @@ namespace BarbaKidsShop.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id)
         {
             var product = await productService.GetEditProductModelByIdAsync(id);
@@ -67,7 +67,7 @@ namespace BarbaKidsShop.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(ProductEditViewModel model)
         {
             if (!ModelState.IsValid)
@@ -93,7 +93,7 @@ namespace BarbaKidsShop.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var product = await productService.GetProductDeleteByIdAsync(id);
@@ -107,7 +107,7 @@ namespace BarbaKidsShop.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(ProductDeleteViewModel model)
         {
             if (!ModelState.IsValid)
