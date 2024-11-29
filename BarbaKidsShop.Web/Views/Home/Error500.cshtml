@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Internal Server Error";
+}
+
+<link rel="stylesheet" href="~/css/Error500StyleSheet.css" asp-append-version="true" />
+
+<div class="container text-center py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- 500 Error Icon/Image -->
+            <img src="~/img/500-error.svg" alt="500 Internal Server Error" class="img-fluid mb-4" style="max-width: 350px;" />
+
+            <h1 class="display-3 text-warning">Oops! Something Went Wrong</h1>
+            <p class="lead text-muted">It seems we are facing an issue. Our team is already working on it.</p>
+
+            <div class="mt-4">
+                <!-- Option to go back home -->
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-lg mt-4">
+                    <i class="bi bi-arrow-return-left"></i> Go to Home
+                </a>
+                <a href="mailto:support@yourdomain.com" class="btn btn-info btn-lg ml-2">
+                    <i class="bi bi-envelope-fill"></i> Contact Support
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -23,4 +23,8 @@
     <ProjectReference Include="..\BarbaKidsShop.Web.ViewModels\BarbaKidsShop.Web.ViewModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+
 </Project>

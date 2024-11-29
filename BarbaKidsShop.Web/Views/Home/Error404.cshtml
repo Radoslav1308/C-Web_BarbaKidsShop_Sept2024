@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Page Not Found";
+}
+
+<link rel="stylesheet" href="~/css/Error404StyleSheet.css" asp-append-version="true" />
+
+<div class="container text-center py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- 404 Icon/Image -->
+            <img src="~/img/404-error.jpg" alt="404 Not Found" class="img-fluid mb-4" style="max-width: 350px;" />
+
+            <h1 class="display-3 text-danger">Oops! Page Not Found</h1>
+            <p class="lead text-muted">Sorry, the page you're looking for doesn't exist or has been moved.</p>
+
+            <!-- Option to go back home -->
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-lg mt-4">
+                <i class="bi bi-house-door"></i> Go to Home
+            </a>
+        </div>
+    </div>
+</div>
