@@ -139,3 +139,35 @@ hr {
     color: #6a11cb;
     transition: color 0.3s ease;
 }
+
+/* Pagination button styling */
+.pagination-container .page-link {
+    font-size: 0.875rem; /* Smaller font size */
+    padding: 6px 12px; /* Reduced padding */
+    background-color: #f8f9fa;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+}
+
+    .pagination-container .page-link:hover {
+        background-color: #007bff; /* Blue background for hover */
+        color: white; /* White text on hover */
+        transform: scale(1.05); /* Slight zoom effect */
+    }
+
+/* Disable state styles */
+.pagination-container .page-item.disabled .page-link {
+    background-color: #e9ecef; /* Light gray for disabled state */
+    color: #6c757d; /* Disabled text color */
+    cursor: not-allowed;
+}
+
+/* Adjust icon size and spacing */
+.pagination-container .page-link i {
+    font-size: 1.2rem; /* Smaller icon size */
+}
+
+/* Add spacing between the pagination controls and product items */
+.pagination-container {
+    margin-top: 15px;
+}

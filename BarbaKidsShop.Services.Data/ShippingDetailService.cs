@@ -31,11 +31,12 @@ namespace BarbaKidsShop.Services.Data
 
             var shippingDetail = new ShippingDetail
             {
+                ShippingDetailId = model.Id,
                 Address = model.Address,
                 City = model.City,
                 PostalCode = model.PostalCode,
                 Country = model.Country,
-                OrderId = order.OrderId
+                OrderId = order.OrderId,
             };
 
             order.ShippingDetail = shippingDetail;
@@ -46,8 +47,7 @@ namespace BarbaKidsShop.Services.Data
             }
 
             await this.shippingDetailRepository.AddAsync(shippingDetail);
-
-            order.ShippingDetailId = shippingDetail.ShippingDetailId;
+            
             await this.orderRepository.UpdateAsync(order);
 
             var relatedEntities = await this.productOrderRepository

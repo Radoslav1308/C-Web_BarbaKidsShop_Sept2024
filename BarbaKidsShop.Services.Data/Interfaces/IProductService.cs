@@ -10,7 +10,7 @@ namespace BarbaKidsShop.Services.Data.Interfaces
 {
     public interface IProductService
     {
-        Task<IEnumerable<ProductIndexViewModel>> IndexGetAllProductsOrderedByPriceAsync();
+        Task<PaginatedListViewModel<ProductIndexViewModel>> GetPaginatedProductsAsync(int pageNumber, int pageSize);
         Task<ProductViewModel> GetAddProductModelByIdAsync();
         Task AddProductAsync(ProductViewModel model);
         Task<ProductEditViewModel> GetEditProductModelByIdAsync(int id);

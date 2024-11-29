@@ -12,6 +12,8 @@ namespace BarbaKidsShop.Web.ViewModels
 {
     public class ShippingDetailViewModel
     {
+        public int Id { get; set; }
+
         [Required]
         [MinLength(FullNameMinLength)]
         [MaxLength(FullNameMaxLength)]

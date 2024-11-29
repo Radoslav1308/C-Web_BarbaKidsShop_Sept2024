@@ -5,7 +5,7 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-@model IEnumerable<ProductIndexViewModel>
+@model PaginatedListViewModel<ProductIndexViewModel>
 
 @{
     ViewData["Title"] = "Products List";
@@ -19,8 +19,9 @@
     </div>
     <hr class="my-4" />
 
+    <!-- Displaying Products -->
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        @foreach (var product in Model)
+        @foreach (var product in Model.Items)
         {
             <div class="col">
                 <div class="card h-100 shadow-lg border-0 rounded-lg overflow-hidden">
@@ -52,7 +53,6 @@
                                     <input type="hidden" name="productId" value="@product.Id" />
                                     <div class="input-group">
                                         <input type="number" name="quantity" class="form-control text-center me-2" value="1" min="1" style="width: 80px;" />
-
                                         <button type="submit" class="btn btn-success">
                                             <i class="bi bi-cart-fill"></i> Buy
                                         </button>
@@ -70,5 +70,35 @@
                 </div>
             </div>
         }
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="pagination-container position-relative mb-5">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination mb-0">
+                        <!-- Previous Page Link -->
+                        <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+                            <a class="page-link d-flex align-items-center" asp-action="Index" asp-route-pageNumber="@(Model.PageNumber - 1)" asp-route-pageSize="@Model.PageSize">
+                                <i class="bi bi-arrow-left-circle-fill me-2"></i> Previous
+                            </a>
+                        </li>
+
+                        <!-- Next Page Link -->
+                        <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                            <a class="page-link d-flex align-items-center" asp-action="Index" asp-route-pageNumber="@(Model.PageNumber + 1)" asp-route-pageSize="@Model.PageSize">
+                                Next <i class="bi bi-arrow-right-circle-fill ms-2"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Page Number Display -->
+        <div class="text-end mt-2">
+            <span>Page @Model.PageNumber of @Model.TotalPages</span>
+        </div>
     </div>
 </div>

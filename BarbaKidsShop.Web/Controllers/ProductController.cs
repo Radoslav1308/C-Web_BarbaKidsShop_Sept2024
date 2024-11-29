@@ -21,12 +21,10 @@ namespace BarbaKidsShop.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageNumber = 1, int pageSize = 9)
         {
-            IEnumerable<ProductIndexViewModel> products =
-                await this.productService.IndexGetAllProductsOrderedByPriceAsync();
-
-            return View(products);
+            var model = await this.productService.GetPaginatedProductsAsync(pageNumber, pageSize);
+            return View(model);
         }
 
         [HttpGet]

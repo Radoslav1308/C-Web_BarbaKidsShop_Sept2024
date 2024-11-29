@@ -97,22 +97,36 @@ namespace BarbaKidsShop.Services.Data
             return productDetailsViewModel;
         }
 
-        public async Task<IEnumerable<ProductIndexViewModel>> IndexGetAllProductsOrderedByPriceAsync()
+        public async Task<PaginatedListViewModel<ProductIndexViewModel>> GetPaginatedProductsAsync(int pageNumber, int pageSize)
         {
-            IEnumerable<ProductIndexViewModel> products = await this.productRepository
-                .GetAllAttached()
-                .Where(p => p.IsDeleted == false)
-                .OrderBy(p => p.Price)
+            pageNumber = pageNumber < 1 ? 1 : pageNumber;
+            pageSize = pageSize < 1 ? 9 : pageSize;
+
+            var query = this.productRepository.GetAllAttached()
+                .Where(p => !p.IsDeleted)
+                .OrderBy(p => p.Price);
+
+            var totalItems = await query.CountAsync();
+
+            var products = await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .Select(p => new ProductIndexViewModel
                 {
                     Id = p.Id,
                     ProductName = p.ProductName,
                     Price = p.Price,
                     ImageUrl = p.ImageUrl
-                })                
+                })
                 .ToListAsync();
 
-            return products;
+            return new PaginatedListViewModel<ProductIndexViewModel>
+            {
+                Items = products,
+                TotalItems = totalItems,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
 
         public async Task UpdateProductAsync(ProductEditViewModel model)
