@@ -132,6 +132,7 @@ namespace BarbaKidsShop.Services.Data
         public async Task UpdateProductAsync(ProductEditViewModel model)
         {
             var product = await this.productRepository.GetByIdAsync(model.Id);
+
             if (product == null)
             {
                 throw new Exception("Product not found.");

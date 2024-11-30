@@ -11,3 +11,18 @@
     padding: 1rem;
     border-radius: 0.5rem;
 }
+
+.d-flex.justify-content-center {
+    padding: 0;
+    margin: 0 auto;
+}
+
+.social-icons a {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+    .social-icons a:hover {
+        transform: scale(1.1);
+        color: #ff5722;
+    }
