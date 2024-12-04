@@ -35,6 +35,11 @@ namespace BarbaKidsShop.Services.Data
                 })
                 .ToListAsync();
 
+            if (products.Count == 0)
+            {
+                throw new Exception("Products not found.");
+            }
+
             return products;
         }
     }
