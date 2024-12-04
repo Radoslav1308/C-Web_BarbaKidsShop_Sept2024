@@ -57,6 +57,11 @@ namespace BarbaKidsShop.Services.Data
             var product = await this.productRepository
                 .GetByIdAsync(id);
 
+            if (product == null)
+            {
+                throw new Exception("Product not found.");
+            }
+
             var productEditViewModel =  new ProductEditViewModel
             {
                 Id = product.Id,
@@ -84,6 +89,11 @@ namespace BarbaKidsShop.Services.Data
                 .Include(p => p.Category)
                 .FirstOrDefaultAsync();
 
+            if (product == null)
+            {
+                throw new Exception("Product not found.");
+            }
+
             var productDetailsViewModel = new ProductDetailsViewModel
             {
                 Id = product.Id,
@@ -91,7 +101,7 @@ namespace BarbaKidsShop.Services.Data
                 Description = product.Description,
                 Price = product.Price,
                 ImageUrl = product.ImageUrl,
-                CategoryName = product.Category != null ? product.Category.Name : "No Category"
+                CategoryName = product.Category.Name
             };
 
             return productDetailsViewModel;
@@ -151,6 +161,11 @@ namespace BarbaKidsShop.Services.Data
         {
             var product = await this.productRepository.GetByIdAsync(id);
 
+            if (product == null)
+            {
+                throw new Exception("Product not found.");
+            }
+
             var productDeleteViewModel =  new ProductDeleteViewModel
             {
                 Id = product.Id,
@@ -170,6 +185,6 @@ namespace BarbaKidsShop.Services.Data
             }
 
             product.IsDeleted = true; // Mark as deleted
-        }     
+        }
     }
 }
