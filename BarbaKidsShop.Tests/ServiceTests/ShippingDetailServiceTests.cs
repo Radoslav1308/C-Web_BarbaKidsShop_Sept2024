@@ -4,10 +4,13 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using BarbaKidsShop.Data;
 using BarbaKidsShop.Data.Models;
+using BarbaKidsShop.Data.Repository;
 using BarbaKidsShop.Data.Repository.Interfaces;
 using BarbaKidsShop.Services.Data;
 using BarbaKidsShop.Web.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
 
@@ -16,176 +19,130 @@ namespace BarbaKidsShop.Tests.ServiceTests
     [TestFixture]
     public class ShippingDetailServiceTests
     {
-        private Mock<IRepository<ShippingDetail, int>> mockShippingDetailRepository;
-        private Mock<IRepository<Order, int>> mockOrderRepository;
-        private Mock<IRepository<ProductOrder, int>> mockProductOrderRepository;
-        private ShippingDetailService shippingDetailService;
+        private ApplicationDbContext _context;
+        private ShippingDetailService _shippingDetailService;
+        private IRepository<Order, int> _orderRepository;
+        private IRepository<ShippingDetail, int> _shippingDetailRepository;
+        private IRepository<ProductOrder, int> _productOrderRepository;
+
+        private string _validUserId;
+        private Order _order;
 
         [SetUp]
-        public void SetUp()
+        public void Setup()
         {
-            // Correctly mock the repositories with their specific types
-            mockShippingDetailRepository = new Mock<IRepository<ShippingDetail, int>>();
-            mockOrderRepository = new Mock<IRepository<Order, int>>();
-            mockProductOrderRepository = new Mock<IRepository<ProductOrder, int>>();
+            // Set up in-memory database for testing
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(databaseName: "TestDatabase")
+                .Options;
 
-            // Pass the mocks to the ShippingDetailService constructor in the correct order
-            shippingDetailService = new ShippingDetailService(
-                mockShippingDetailRepository.Object,
-                mockOrderRepository.Object,
-                mockProductOrderRepository.Object
+            // Initialize the context
+            _context = new ApplicationDbContext(options);
+            _orderRepository = new BaseRepository<Order, int>(_context); // In-memory repository for Order
+            _shippingDetailRepository = new BaseRepository<ShippingDetail, int>(_context); // In-memory repository for ShippingDetail
+            _productOrderRepository = new BaseRepository<ProductOrder, int>(_context); // In-memory repository for ProductOrder
+
+            // Initialize the service
+            _shippingDetailService = new ShippingDetailService(
+
+                _shippingDetailRepository,
+                _orderRepository,
+                _productOrderRepository
             );
+
+            // Seed the database with a user and an order
+            SeedDatabase();
+        }
+
+        private void SeedDatabase()
+        {
+            _validUserId = "d402e413-4d10-4a92-8eab-c1eec022e8bc";
+
+            // Add an order for the valid user
+            _order = new Order
+            {
+                OrderId = 1,
+                UserId = _validUserId,
+                ShippingDetail = null // Initially no shipping detail
+            };
+            _context.Orders.Add(_order);
+            _context.SaveChanges();
         }
 
         [Test]
-        public async Task CreateShippingDetailAsync_ShouldCreateShippingDetail_WhenOrderExists()
+        public async Task CreateShippingDetailAsync_ShouldCreateShippingDetailSuccessfully()
         {
             // Arrange
             var model = new ShippingDetailViewModel
             {
-                Address = "123 Street",
-                City = "City",
+                Id = 1,
+                Address = "123 Test St",
+                City = "Test City",
                 PostalCode = "12345",
-                Country = "Country"
+                Country = "Test Country"
             };
-
-            var userId = "user123";
-            var order = new Order
-            {
-                UserId = userId,
-                OrderId = 1,
-                ShippingDetail = null // No shipping detail initially
-            };
-
-            var shippingDetail = new ShippingDetail
-            {
-                ShippingDetailId = 1,
-                Address = model.Address,
-                City = model.City,
-                PostalCode = model.PostalCode,
-                Country = model.Country,
-                OrderId = order.OrderId
-            };
-
-            // Mock repositories
-            mockOrderRepository.Setup(repo => repo.FirstOrDefaultAsync(It.IsAny<Expression<Func<Order, bool>>>())).ReturnsAsync(order);
-            mockShippingDetailRepository.Setup(repo => repo.AddAsync(It.IsAny<ShippingDetail>())).Returns(Task.CompletedTask);
-            mockProductOrderRepository.Setup(repo => repo.GetAllAttached()).Returns(new List<ProductOrder>().AsQueryable());
 
             // Act
-            await shippingDetailService.CreateShippingDetailAsync(model, userId);
+            await _shippingDetailService.CreateShippingDetailAsync(model, _validUserId);
 
-            // Assert
-            mockShippingDetailRepository.Verify(repo => repo.AddAsync(It.IsAny<ShippingDetail>()), Times.Once);
-            mockOrderRepository.Verify(repo => repo.UpdateAsync(It.IsAny<Order>()), Times.Once);
-            mockProductOrderRepository.Verify(repo => repo.RemoveAsync(It.IsAny<ProductOrder>()), Times.Once);
-            Assert.That(order.ShippingDetail, Is.Not.Null);
-            Assert.That(order.ShippingDetail.Address, Is.EqualTo(model.Address));
-            Assert.That(order.ShippingDetailId, Is.EqualTo(shippingDetail.ShippingDetailId));
+            // Assert: Verify the order now has the shipping detail
+            var order = await _context.Orders.Include(o => o.ShippingDetail).FirstOrDefaultAsync(o => o.OrderId == _order.OrderId);
+            Assert.That(order.ShippingDetail, Is.Not.Null); // Ensure ShippingDetail was added
+            Assert.That(model.Address, Is.EqualTo(order.ShippingDetail.Address)); // Ensure the address matches
         }
 
         [Test]
-        public void CreateShippingDetailAsync_ShouldThrowException_WhenNoOrderFound()
+        public async Task CreateShippingDetailAsync_ShouldThrowException_WhenNoOrderExistsForUser()
         {
             // Arrange
             var model = new ShippingDetailViewModel
             {
-                Address = "123 Street",
-                City = "City",
+                Id = 1,
+                Address = "123 Test St",
+                City = "Test City",
                 PostalCode = "12345",
-                Country = "Country"
+                Country = "Test Country"
             };
-
-            var userId = "user123";
-
-            // Mock repository to return null for no order found
-            mockOrderRepository.Setup(repo => repo.FirstOrDefaultAsync(It.IsAny<Expression<Func<Order, bool>>>())).ReturnsAsync((Order)null);
 
             // Act & Assert
-            var ex = Assert.ThrowsAsync<InvalidOperationException>(() => shippingDetailService.CreateShippingDetailAsync(model, userId));
-            Assert.That(ex.Message, Is.EqualTo("No open order found for the user."));
+            var ex = Assert.ThrowsAsync<InvalidOperationException>(async () =>
+                await _shippingDetailService.CreateShippingDetailAsync(model, "invalid-user-id")
+            );
+            Assert.That("No open order found for the user.", Is.EqualTo(ex.Message));
         }
 
         [Test]
-        public async Task CreateShippingDetailAsync_ShouldUpdateOrderShippingDetailId()
+        public async Task CreateShippingDetailAsync_ShouldRemoveProductOrders_ForTheOrder()
         {
             // Arrange
             var model = new ShippingDetailViewModel
             {
-                Address = "123 Street",
-                City = "City",
+                Id = 1,
+                Address = "123 Test St",
+                City = "Test City",
                 PostalCode = "12345",
-                Country = "Country"
+                Country = "Test Country"
             };
 
-            var userId = "user123";
-
-            var order = new Order
+            var productOrder = new ProductOrder
             {
-                UserId = userId,
-                OrderId = 1,
-                ShippingDetail = null // No shipping detail initially
+                ProductId = 1,
+                OrderId = _order.OrderId,
+                Quantity = 1
             };
 
-            var shippingDetail = new ShippingDetail
-            {
-                ShippingDetailId = 1, // Assume this ID is generated after insertion
-                Address = model.Address,
-                City = model.City,
-                PostalCode = model.PostalCode,
-                Country = model.Country
-            };
-
-            // Mock repositories
-            mockOrderRepository.Setup(repo => repo.FirstOrDefaultAsync(It.IsAny<Expression<Func<Order, bool>>>())).ReturnsAsync(order);
-            mockShippingDetailRepository.Setup(repo => repo.AddAsync(It.IsAny<ShippingDetail>())).Returns(Task.CompletedTask);
-            mockProductOrderRepository.Setup(repo => repo.GetAllAttached()).Returns(new List<ProductOrder>().AsQueryable());
+            // Add product order to the in-memory database
+            _context.ProductOrders.Add(productOrder);
+            await _context.SaveChangesAsync();
 
             // Act
-            await shippingDetailService.CreateShippingDetailAsync(model, userId);
+            await _shippingDetailService.CreateShippingDetailAsync(model, _validUserId);
 
-            // Assert
-            Assert.That(order.ShippingDetailId, Is.EqualTo(shippingDetail.ShippingDetailId));
-            mockOrderRepository.Verify(repo => repo.UpdateAsync(It.IsAny<Order>()), Times.Once);
-        }
+            // Assert: Ensure ProductOrder is removed
+            var removedProductOrder = await _context.ProductOrders
+                .FirstOrDefaultAsync(po => po.OrderId == _order.OrderId);
 
-        [Test]
-        public async Task CreateShippingDetailAsync_ShouldRemoveRelatedProductOrders_WhenOrderExists()
-        {
-            // Arrange
-            var model = new ShippingDetailViewModel
-            {
-                Address = "123 Street",
-                City = "City",
-                PostalCode = "12345",
-                Country = "Country"
-            };
-
-            var userId = "user123";
-
-            var order = new Order
-            {
-                UserId = userId,
-                OrderId = 1,
-                ShippingDetail = null // No shipping detail initially
-            };
-
-            var productOrderList = new List<ProductOrder>
-        {
-            new ProductOrder { OrderId = 1, ProductId = 1 },
-            new ProductOrder { OrderId = 1, ProductId = 2 }
-        };
-
-            // Mock repositories
-            mockOrderRepository.Setup(repo => repo.FirstOrDefaultAsync(It.IsAny<Expression<Func<Order, bool>>>())).ReturnsAsync(order);
-            mockShippingDetailRepository.Setup(repo => repo.AddAsync(It.IsAny<ShippingDetail>())).Returns(Task.CompletedTask);
-            mockProductOrderRepository.Setup(repo => repo.GetAllAttached()).Returns(productOrderList.AsQueryable());
-
-            // Act
-            await shippingDetailService.CreateShippingDetailAsync(model, userId);
-
-            // Assert
-            mockProductOrderRepository.Verify(repo => repo.RemoveAsync(It.IsAny<ProductOrder>()), Times.Exactly(productOrderList.Count)); // Verify RemoveAsync is called for each product order
+            Assert.That(removedProductOrder, Is.Null); // Verify the ProductOrder was removed
         }
     }
 }

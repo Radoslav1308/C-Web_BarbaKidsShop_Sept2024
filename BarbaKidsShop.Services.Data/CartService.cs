@@ -30,8 +30,7 @@ namespace BarbaKidsShop.Services.Data
         {
             var cartItems = await this.productOrderRepository
                 .GetAllAttached()
-                .Where(od => od.Order.UserId == userId)
-                .Where(od => !od.Product.IsDeleted)
+                .Where(od => od.Order.UserId == userId && !od.Product.IsDeleted)
                 .Include(od => od.Product)
                 .Select(od => new CartViewModel
                 {

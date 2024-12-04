@@ -29,6 +29,11 @@ namespace BarbaKidsShop.Services.Data
             var order = await this.orderRepository
             .FirstOrDefaultAsync(o => o.UserId == userId);
 
+            if (order == null)
+            {
+                throw new InvalidOperationException("No open order found for the user.");
+            }
+
             var shippingDetail = new ShippingDetail
             {
                 ShippingDetailId = model.Id,
@@ -41,11 +46,6 @@ namespace BarbaKidsShop.Services.Data
 
             order.ShippingDetail = shippingDetail;
             
-            if (order.ShippingDetail == null)
-            {
-                throw new InvalidOperationException("No open order found for the user.");
-            }
-
             await this.shippingDetailRepository.AddAsync(shippingDetail);
             
             await this.orderRepository.UpdateAsync(order);
