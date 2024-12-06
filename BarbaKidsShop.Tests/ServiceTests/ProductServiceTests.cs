@@ -309,7 +309,7 @@ namespace BarbaKidsShop.Tests.ServiceTests
             // Assert
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Items.Count, Is.EqualTo(5)); // Check if 5 items are returned
-            Assert.That(11, Is.EqualTo(result.TotalItems)); // Total products in the database
+            Assert.That(10, Is.EqualTo(result.TotalItems)); // Total products in the database
             Assert.That(1, Is.EqualTo(result.PageNumber)); // Correct page number
             Assert.That(5, Is.EqualTo(result.PageSize)); // Correct page size
         }

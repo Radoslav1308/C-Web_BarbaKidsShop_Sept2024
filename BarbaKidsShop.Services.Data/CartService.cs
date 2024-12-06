@@ -47,7 +47,7 @@ namespace BarbaKidsShop.Services.Data
         public async Task AddToCartAsync(string userId, int productId, int quantity)
         {
             var product = await this.productRepository.GetByIdAsync(productId);
-            if (product == null)
+            if (product.IsDeleted)
             {
                 throw new ArgumentException("Product not found.");
             }
